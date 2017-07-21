@@ -1,9 +1,9 @@
 # Project files
 .gradle
 .idea
+*.iml
 
 # Application build files
-/*/build/
 build/
 
 # Local configuration
