@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="amount_value">
+        <item>604800</item>
+        <item>86400</item>
+        <item>43200</item>
+        <item>3600</item>
+        <item>1800</item>
+        <item>600</item>
+        <item>0</item>
+    </string-array>
+</resources>

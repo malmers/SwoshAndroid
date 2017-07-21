@@ -6,4 +6,14 @@
     <string name="message">Message</string>
     <string name="expiration">Expires in</string>
     <string name="create_button">Generate link</string>
+
+    <string-array name="amount_name">
+        <item>1 week</item>
+        <item>1 day</item>
+        <item>12 hours</item>
+        <item>1 hour</item>
+        <item>30 minutes</item>
+        <item>10 minutes</item>
+        <item>Never</item>
+    </string-array>
 </resources>

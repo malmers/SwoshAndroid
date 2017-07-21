@@ -39,7 +39,8 @@
         android:layout_marginTop="8dp"
         app:layout_constraintTop_toBottomOf="@+id/amount"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:entries="@array/amount_name" />
 
     <EditText
         android:id="@+id/message"
