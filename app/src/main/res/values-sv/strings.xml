@@ -2,9 +2,9 @@
 <resources>
     <string name="app_name">Swosh</string>
     <string name="action_settings">Inställningar</string>
+    <string name="phone">Nummer</string>
     <string name="amount">Belopp</string>
-    <string name="create_button">Skapa</string>
-    <string name="expiration">Giltighetstid</string>
     <string name="message">Meddelande</string>
-    <string name="number">Nummer</string>
+    <string name="expiration">Giltighetstid</string>
+    <string name="create_button">Skapa</string>
 </resources>

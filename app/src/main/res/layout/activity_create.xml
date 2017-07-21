@@ -4,15 +4,63 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="me.swosh.swoshandroid.CreateActivity">
+    tools:context="me.swosh.swoshandroid.CreateActivity"
+    tools:layout_editor_absoluteY="25dp"
+    tools:layout_editor_absoluteX="0dp">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <EditText
+        android:id="@+id/phone"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/app_name"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:ems="10"
+        android:inputType="phone"
+        android:text="@string/phone"
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/expiration"
+        app:layout_constraintEnd_toEndOf="@+id/expiration" />
+
+    <EditText
+        android:id="@+id/amount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="numberSigned"
+        android:text="@string/amount"
+        app:layout_constraintStart_toStartOf="@+id/expiration"
+        app:layout_constraintEnd_toEndOf="@+id/expiration"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/phone" />
+
+    <Spinner
+        android:id="@+id/expiration"
+        android:layout_width="match_parent"
+        android:layout_height="23dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/amount"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textMultiLine"
+        android:text="@string/message"
+        app:layout_constraintEnd_toEndOf="@+id/amount"
+        app:layout_constraintStart_toStartOf="@+id/amount"
+        app:layout_constraintHorizontal_bias="0.0"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/expiration" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="@string/create_button"
+        app:layout_constraintEnd_toEndOf="@+id/message"
+        app:layout_constraintStart_toStartOf="@+id/message"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
