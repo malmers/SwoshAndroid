@@ -1,0 +1,14 @@
+# Project files
+.gradle
+.idea
+
+# Application build files
+/*/build/
+build/
+
+# Local configuration
+local.properties
+
+# OS X
+.DS_Store
+
