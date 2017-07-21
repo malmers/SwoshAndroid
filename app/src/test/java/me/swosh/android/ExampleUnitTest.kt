@@ -1,4 +1,4 @@
-package me.swosh.swoshandroid
+package me.swosh.android
 
 import org.junit.Test
 

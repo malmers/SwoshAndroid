@@ -8,7 +8,7 @@ android {
     compileSdkVersion 26
     buildToolsVersion "26.0.0"
     defaultConfig {
-        applicationId "me.swosh.swoshandroid"
+        applicationId "me.swosh.android"
         minSdkVersion 19
         targetSdkVersion 26
         versionCode 1
