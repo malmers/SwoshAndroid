@@ -2,11 +2,14 @@ package me.swosh.android
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Spinner
+import me.swosh.android.data.Swosh
+import me.swosh.android.domain.SwoshHTTP
 
 class CreateActivity : AppCompatActivity() {
 
@@ -32,7 +35,11 @@ class CreateActivity : AppCompatActivity() {
         }
 
         button.setOnClickListener {
-            message_field.setText("Phone: ${phone_field.text}, amount: ${amount_field.text}, expiration: ${expiration}")
+            val swosh = Swosh(phone_field.text.toString(), amount_field.text.toString(), message_field.text.toString(), expiration)
+            val transport = SwoshHTTP()
+            transport.sendRequest(swosh) { response ->
+                Log.d("swosh", response.toString())
+            }
         }
     }
 }
