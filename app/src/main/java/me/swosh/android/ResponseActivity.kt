@@ -8,6 +8,7 @@ import com.fasterxml.jackson.module.kotlin.registerKotlinModule
 import me.swosh.android.data.Swosh
 import me.swosh.android.data.SwoshResponse
 import android.content.Intent
+import android.widget.Button
 
 class ResponseActivity : AppCompatActivity() {
 
@@ -21,7 +22,6 @@ class ResponseActivity : AppCompatActivity() {
         swosh = mapper.readValue(intent.getStringExtra("swosh"), Swosh::class.java)
         response = mapper.readValue(intent.getStringExtra("response"), SwoshResponse::class.java)
         updateFields()
-        share()
     }
 
     private fun updateFields() {
@@ -30,11 +30,15 @@ class ResponseActivity : AppCompatActivity() {
         val amount : TextView = findViewById(R.id.response_amount)
         val expiration : TextView = findViewById(R.id.response_expiration)
         val message : TextView = findViewById(R.id.response_message)
+        val share_button : Button = findViewById(R.id.response_share_button)
         id.setText(response.id)
         phone.setText(swosh.phone)
         amount.setText(swosh.amount)
         expiration.setText(swosh.expireAfterSeconds)
         message.setText(swosh.message)
+        share_button.setOnClickListener {
+            share()
+        }
     }
 
     private fun share() {
