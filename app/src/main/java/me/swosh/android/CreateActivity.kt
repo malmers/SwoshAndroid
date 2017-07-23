@@ -2,7 +2,6 @@ package me.swosh.android
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import me.swosh.android.data.Swosh
 import me.swosh.android.domain.SwoshHTTP
@@ -39,10 +38,12 @@ class CreateActivity : AppCompatActivity() {
             val swosh = Swosh(phone_field.text.toString(), amount_field.text.toString(), message_field.text.toString(), expiration)
             val transport = SwoshHTTP()
             transport.sendRequest(swosh) { response ->
-                val responseAction = Intent(this, ResponseActivity::class.java)
-                responseAction.putExtra("swosh", mapper.writeValueAsString(swosh))
-                responseAction.putExtra("response", mapper.writeValueAsString(response))
-                startActivity(responseAction)
+                response?.let {
+                    val responseAction = Intent(this, ResponseActivity::class.java)
+                    responseAction.putExtra("swosh", mapper.writeValueAsString(swosh))
+                    responseAction.putExtra("response", mapper.writeValueAsString(response))
+                    startActivity(responseAction)
+                }
             }
         }
     }
