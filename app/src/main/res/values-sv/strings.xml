@@ -17,4 +17,8 @@
         <item>10 minuter</item>
         <item>Aldrig</item>
     </string-array>
+
+    <string name="response_title">Länk</string>
+    <string name="share_button">Dela</string>
+    <string name="response_id">ID</string>
 </resources>

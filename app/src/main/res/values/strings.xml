@@ -16,4 +16,8 @@
         <item>10 minutes</item>
         <item>Never</item>
     </string-array>
+
+    <string name="response_title">Swosh link</string>
+    <string name="share_button">Share</string>
+    <string name="response_id">ID</string>
 </resources>

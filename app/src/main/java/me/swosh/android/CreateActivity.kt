@@ -4,12 +4,12 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.AdapterView
-import android.widget.Button
-import android.widget.EditText
-import android.widget.Spinner
 import me.swosh.android.data.Swosh
 import me.swosh.android.domain.SwoshHTTP
+import android.content.Intent
+import android.widget.*
+import com.fasterxml.jackson.databind.ObjectMapper
+import com.fasterxml.jackson.module.kotlin.registerKotlinModule
 
 class CreateActivity : AppCompatActivity() {
 
@@ -35,10 +35,14 @@ class CreateActivity : AppCompatActivity() {
         }
 
         button.setOnClickListener {
+            val mapper = ObjectMapper().registerKotlinModule()
             val swosh = Swosh(phone_field.text.toString(), amount_field.text.toString(), message_field.text.toString(), expiration)
             val transport = SwoshHTTP()
             transport.sendRequest(swosh) { response ->
-                Log.d("swosh", response.toString())
+                val responseAction = Intent(this, ResponseActivity::class.java)
+                responseAction.putExtra("swosh", mapper.writeValueAsString(swosh))
+                responseAction.putExtra("response", mapper.writeValueAsString(response))
+                startActivity(responseAction)
             }
         }
     }
