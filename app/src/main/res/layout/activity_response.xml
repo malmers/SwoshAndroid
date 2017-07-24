@@ -1,9 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="#EEE"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+
+        <RelativeLayout
+            android:layout_width="1000dp"
+            android:layout_height="1000dp"
+            android:layout_marginStart="-320dp"
+            android:layout_marginTop="-750dp"
+            android:background="@drawable/round_top">
+
+        </RelativeLayout>
+
 
     <TextView
         android:id="@+id/response_title"
@@ -12,6 +25,7 @@
         android:gravity="center"
         android:text="@string/response_title"
         tools:layout_editor_absoluteX="0dp"
+        android:textColor="@color/colorPrimaryDark"
         android:layout_marginTop="8dp"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -20,6 +34,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
+        android:textColor="@color/colorPrimaryDark"
         android:text="@string/response_id"
         tools:layout_editor_absoluteX="0dp"
         android:layout_marginTop="8dp"
@@ -29,6 +44,7 @@
         android:id="@+id/response_phone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColor="@color/colorPrimaryDark"
         android:gravity="center"
         android:text="@string/phone"
         tools:layout_editor_absoluteX="25dp"
@@ -39,6 +55,7 @@
         android:id="@+id/response_amount"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColor="@color/colorPrimaryDark"
         android:gravity="center"
         android:text="@string/amount"
         tools:layout_editor_absoluteX="0dp"
@@ -49,6 +66,7 @@
         android:id="@+id/response_expiration"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColor="@color/colorPrimaryDark"
         android:gravity="center"
         android:text="@string/expiration"
         tools:layout_editor_absoluteX="0dp"
@@ -58,6 +76,7 @@
     <TextView
         android:id="@+id/response_message"
         android:layout_width="match_parent"
+        android:textColor="@color/colorPrimaryDark"
         android:layout_height="18dp"
         android:gravity="center"
         android:text="@string/message"
@@ -65,15 +84,21 @@
         android:layout_marginTop="8dp"
         app:layout_constraintTop_toBottomOf="@+id/response_expiration" />
 
-    <Button
-        android:id="@+id/response_share_button"
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="@string/share_button"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="8dp" />
-</android.support.constraint.ConstraintLayout>
+        android:layout_height="match_parent"
+        android:layout_marginBottom="60dp">
+
+        <Button
+            android:id="@+id/response_share_button"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:textColor="#EEE"
+            android:text="@string/share_button"
+            android:background="@drawable/flat_purple_button"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true" />
+    </RelativeLayout>
+
+</LinearLayout>
