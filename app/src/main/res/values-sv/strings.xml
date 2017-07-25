@@ -21,4 +21,8 @@
     <string name="response_title">Länk</string>
     <string name="share_button">Dela</string>
     <string name="response_id">ID</string>
+
+    <string name="home_placeholder1">Du har inte skapat några Swosh-länkar än :(</string>
+    <string name="home_placeholder2">Tryck på knappen nedan för att skapa en ny swishförfrågan som du kan skicka till dina vänner</string>
+    <string name="home_button">Ny betallänk</string>
 </resources>

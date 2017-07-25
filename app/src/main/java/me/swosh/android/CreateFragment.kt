@@ -30,7 +30,7 @@ class CreateFragment : Fragment() {
         val phone_field : EditText = view.findViewById(R.id.phone)
         val amount_field : EditText = view.findViewById(R.id.amount)
         val message_field : EditText = view.findViewById(R.id.message)
-        val button : Button = view.findViewById(R.id.button)
+        val button : Button = view.findViewById(R.id.create_button)
 
         dropdown.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(parent: AdapterView<*>?) {

@@ -103,7 +103,7 @@
         android:layout_marginBottom="50dp">
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/create_button"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:layout_width="200dp"

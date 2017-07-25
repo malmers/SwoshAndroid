@@ -20,4 +20,8 @@
     <string name="response_title">Swosh link</string>
     <string name="share_button">Share</string>
     <string name="response_id">ID</string>
+
+    <string name="home_placeholder1">You have not created any Swosh links yet :(</string>
+    <string name="home_placeholder2">Create a new Swish pay request by clicking the button below</string>
+    <string name="home_button">New pay link</string>
 </resources>
