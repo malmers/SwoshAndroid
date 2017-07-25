@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
 
         createFragment.setResponseListener(object: CreateFragment.ResponseListener {
             override fun sendResponse(swosh: Swosh) {
-                responseFragment.updateInfo(swosh)
+                responseFragment.setResponse(swosh)
                 supportFragmentManager.beginTransaction()
                     .replace(R.id.fragment_container, responseFragment)
                     .addToBackStack(null)
