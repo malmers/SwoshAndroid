@@ -2,9 +2,7 @@ package me.swosh.android
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.view.View
 import me.swosh.android.data.Swosh
-import me.swosh.android.data.SwoshResponse
 
 class MainActivity : AppCompatActivity() {
     lateinit var createFragment : CreateFragment
@@ -14,23 +12,20 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.fragment_container)
 
-        val container : View = findViewById(R.id.fragment_container)
-        container?.let {
-            val transaction = supportFragmentManager.beginTransaction()
-            createFragment = CreateFragment()
-            responseFragment = ResponseFragment()
+        val transaction = supportFragmentManager.beginTransaction()
+        createFragment = CreateFragment()
+        responseFragment = ResponseFragment()
 
-            createFragment.setResponseListener(object: CreateFragment.ResponseListener {
-                override fun sendResponse(swosh: Swosh, response: SwoshResponse) {
-                    responseFragment.updateInfo(response)
-                    supportFragmentManager.beginTransaction()
-                        .replace(R.id.fragment_container, responseFragment)
-                        .addToBackStack(null)
-                        .commit()
-                }
-            })
+        createFragment.setResponseListener(object: CreateFragment.ResponseListener {
+            override fun sendResponse(swosh: Swosh) {
+                responseFragment.updateInfo(swosh)
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.fragment_container, responseFragment)
+                    .addToBackStack(null)
+                    .commit()
+            }
+        })
 
-            transaction.add(R.id.fragment_container, createFragment).commit()
-        }
+        transaction.add(R.id.fragment_container, createFragment).commit()
     }
 }

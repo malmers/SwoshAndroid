@@ -7,7 +7,7 @@ import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.NoCache
 import com.fasterxml.jackson.databind.ObjectMapper
-import me.swosh.android.data.Swosh
+import me.swosh.android.data.SwoshRequest
 import org.json.JSONObject
 import com.android.volley.toolbox.HurlStack
 import com.android.volley.toolbox.BasicNetwork
@@ -21,7 +21,7 @@ class SwoshHTTP() : SwoshTransport {
         val queue: RequestQueue = RequestQueue(NoCache(), BasicNetwork(HurlStack()))
     }
 
-    override fun sendRequest(swosh: Swosh, completionHandler: (response: SwoshResponse?) -> Unit ) {
+    override fun sendRequest(swosh: SwoshRequest, completionHandler: (response: SwoshResponse?) -> Unit ) {
         val mapper = ObjectMapper().registerKotlinModule()
         val values = mapper.writeValueAsString(swosh)
 

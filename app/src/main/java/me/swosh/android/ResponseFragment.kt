@@ -1,7 +1,6 @@
 package me.swosh.android
 
 import android.os.Bundle
-import me.swosh.android.data.SwoshResponse
 import android.content.Intent
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
@@ -9,10 +8,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import me.swosh.android.data.Swosh
 
 class ResponseFragment : Fragment() {
 
-    lateinit var response : SwoshResponse
+    lateinit var response : Swosh
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val view = inflater.inflate(R.layout.fragment_response, container, false)
@@ -20,7 +20,7 @@ class ResponseFragment : Fragment() {
         return view
     }
 
-    fun updateInfo(response: SwoshResponse) {
+    fun updateInfo(response: Swosh) {
         this.response = response
     }
 

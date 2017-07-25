@@ -9,9 +9,14 @@ import android.widget.AdapterView
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Spinner
+import com.fasterxml.jackson.databind.ObjectMapper
+import com.fasterxml.jackson.module.kotlin.registerKotlinModule
 import me.swosh.android.data.Swosh
+import me.swosh.android.data.SwoshRequest
 import me.swosh.android.data.SwoshResponse
 import me.swosh.android.domain.SwoshHTTP
+import com.fasterxml.jackson.databind.node.ObjectNode
+
 
 class CreateFragment : Fragment() {
 
@@ -37,15 +42,27 @@ class CreateFragment : Fragment() {
         }
 
         button.setOnClickListener {
-            val swosh = Swosh(phone_field.text.toString(), amount_field.text.toString(), message_field.text.toString(), expiration)
+            val request = SwoshRequest(phone_field.text.toString(), intFromTextField(amount_field), message_field.text.toString(), Integer.parseInt(expiration))
             val transport = SwoshHTTP()
-            transport.sendRequest(swosh) { response ->
+            transport.sendRequest(request) { response ->
                 response?.let {
-                    responseListener.sendResponse(swosh, response)
+                    responseListener.sendResponse(combineSwoshData(request, response))
                 }
             }
         }
         return view
+    }
+
+    private fun combineSwoshData(request: SwoshRequest, response: SwoshResponse): Swosh {
+        val mapper = ObjectMapper().registerKotlinModule()
+        val node = mapper.convertValue(request, ObjectNode::class.java)
+        node.put("id", response.id)
+        node.put("url", response.url)
+        return mapper.convertValue(node, Swosh::class.java)
+    }
+
+    private fun intFromTextField(field: EditText) : Int {
+        return Integer.parseInt(field.text.toString())
     }
 
     fun setResponseListener(listener : ResponseListener) {
@@ -53,6 +70,6 @@ class CreateFragment : Fragment() {
     }
 
     interface ResponseListener {
-        fun sendResponse(swosh: Swosh, response: SwoshResponse)
+        fun sendResponse(swosh: Swosh)
     }
 }
