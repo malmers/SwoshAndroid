@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:padding="@dimen/padding_standard"
     android:background="@drawable/background_gradient"
-    tools:context="me.swosh.android.CreateActivity"
+    tools:context="me.swosh.android.CreateFragment"
     android:orientation="vertical">
 
     <RelativeLayout

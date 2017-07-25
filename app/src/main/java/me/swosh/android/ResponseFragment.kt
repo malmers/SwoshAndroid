@@ -15,7 +15,7 @@ class ResponseFragment : Fragment() {
     lateinit var response : SwoshResponse
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        val view = inflater.inflate(R.layout.activity_response, container, false)
+        val view = inflater.inflate(R.layout.fragment_response, container, false)
         updateFields(view)
         return view
     }
