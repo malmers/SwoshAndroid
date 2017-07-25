@@ -28,16 +28,12 @@ class ResponseFragment : Fragment() {
         val id : TextView = view.findViewById(R.id.response_id)
         val share_button : Button = view.findViewById(R.id.response_share_button)
 
-        id.setText(response.id)
+        id.text = response.id
         share_button.setOnClickListener {
-            share()
+            val sharingIntent = Intent(android.content.Intent.ACTION_SEND)
+            sharingIntent.type = "text/plain"
+            sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, response.url)
+            startActivity(Intent.createChooser(sharingIntent, "Share via"))
         }
-    }
-
-    private fun share() {
-        val sharingIntent = Intent(android.content.Intent.ACTION_SEND)
-        sharingIntent.type = "text/plain"
-        sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, response.url)
-        startActivity(Intent.createChooser(sharingIntent, "Share via"))
     }
 }

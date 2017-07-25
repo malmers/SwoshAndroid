@@ -32,7 +32,7 @@ class CreateFragment : Fragment() {
             }
 
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                expiration = resources.getStringArray(R.array.amount_value).get(position)
+                expiration = resources.getStringArray(R.array.amount_value)[position]
             }
         }
 

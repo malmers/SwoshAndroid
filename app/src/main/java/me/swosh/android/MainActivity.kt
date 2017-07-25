@@ -23,10 +23,10 @@ class MainActivity : AppCompatActivity() {
             createFragment.setResponseListener(object: CreateFragment.ResponseListener {
                 override fun sendResponse(swosh: Swosh, response: SwoshResponse) {
                     responseFragment.updateInfo(response)
-                    val transaction = supportFragmentManager.beginTransaction()
-                    transaction.replace(R.id.fragment_container, responseFragment);
-                    transaction.addToBackStack(null);
-                    transaction.commit()
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.fragment_container, responseFragment)
+                        .addToBackStack(null)
+                        .commit()
                 }
             })
 
