@@ -7,11 +7,11 @@ import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.NoCache
 import com.fasterxml.jackson.databind.ObjectMapper
-import me.swosh.android.data.SwoshRequest
+import me.swosh.android.models.SwoshRequest
 import org.json.JSONObject
 import com.android.volley.toolbox.HurlStack
 import com.android.volley.toolbox.BasicNetwork
-import me.swosh.android.data.SwoshResponse
+import me.swosh.android.models.SwoshResponse
 import com.fasterxml.jackson.module.kotlin.registerKotlinModule
 
 class SwoshHTTP() : SwoshTransport {

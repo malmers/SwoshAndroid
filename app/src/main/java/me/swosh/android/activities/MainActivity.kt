@@ -1,8 +1,12 @@
-package me.swosh.android
+package me.swosh.android.activities
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import me.swosh.android.data.Swosh
+import me.swosh.android.R
+import me.swosh.android.fragments.CreateFragment
+import me.swosh.android.fragments.HomeFragment
+import me.swosh.android.fragments.ResponseFragment
+import me.swosh.android.models.Swosh
 
 class MainActivity : AppCompatActivity() {
     lateinit var homeFragment : HomeFragment

@@ -1,4 +1,4 @@
-package me.swosh.android
+package me.swosh.android.fragments
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -11,11 +11,12 @@ import android.widget.EditText
 import android.widget.Spinner
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.registerKotlinModule
-import me.swosh.android.data.Swosh
-import me.swosh.android.data.SwoshRequest
-import me.swosh.android.data.SwoshResponse
+import me.swosh.android.models.Swosh
+import me.swosh.android.models.SwoshRequest
+import me.swosh.android.models.SwoshResponse
 import me.swosh.android.domain.SwoshHTTP
 import com.fasterxml.jackson.databind.node.ObjectNode
+import me.swosh.android.R
 
 
 class CreateFragment : Fragment() {
