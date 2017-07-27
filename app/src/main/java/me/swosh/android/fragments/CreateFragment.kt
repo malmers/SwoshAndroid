@@ -17,12 +17,13 @@ import me.swosh.android.models.SwoshResponse
 import me.swosh.android.domain.SwoshHTTP
 import com.fasterxml.jackson.databind.node.ObjectNode
 import me.swosh.android.R
-
+import me.swosh.android.data.Preference
 
 class CreateFragment : Fragment() {
 
     private lateinit var expiration : String
     private lateinit var responseListener : ResponseListener
+    private lateinit var preference: Preference
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_create, container, false)
@@ -32,6 +33,8 @@ class CreateFragment : Fragment() {
         val amount_field : EditText = view.findViewById(R.id.amount)
         val message_field : EditText = view.findViewById(R.id.message)
         val button : Button = view.findViewById(R.id.create_button)
+
+        phone_field.setText(preference.phone)
 
         dropdown.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -47,6 +50,7 @@ class CreateFragment : Fragment() {
             val transport = SwoshHTTP()
             transport.sendRequest(request) { response ->
                 response?.let {
+                    preference.phone = request.phone
                     responseListener.sendResponse(combineSwoshData(request, response))
                 }
             }
@@ -64,6 +68,10 @@ class CreateFragment : Fragment() {
 
     private fun intFromTextField(field: EditText) : Int {
         return Integer.parseInt(field.text.toString())
+    }
+
+    fun setPreference(preference: Preference) {
+        this.preference = preference
     }
 
     fun setResponseListener(listener : ResponseListener) {

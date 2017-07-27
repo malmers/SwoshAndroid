@@ -1,8 +1,10 @@
 package me.swosh.android.activities
 
+import android.content.Context
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import me.swosh.android.R
+import me.swosh.android.data.Preference
 import me.swosh.android.fragments.CreateFragment
 import me.swosh.android.fragments.HomeFragment
 import me.swosh.android.fragments.ResponseFragment
@@ -17,10 +19,13 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.fragment_container)
 
+        val preference = Preference(getPreferences(Context.MODE_PRIVATE))
         val transaction = supportFragmentManager.beginTransaction()
         homeFragment = HomeFragment()
         createFragment = CreateFragment()
         responseFragment = ResponseFragment()
+
+        createFragment.setPreference(preference)
 
         createFragment.setResponseListener(object: CreateFragment.ResponseListener {
             override fun sendResponse(swosh: Swosh) {
