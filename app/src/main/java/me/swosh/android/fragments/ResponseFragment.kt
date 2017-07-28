@@ -26,10 +26,15 @@ class ResponseFragment : Fragment() {
     }
 
     private fun updateFields(view: View) {
-        val id : TextView = view.findViewById(R.id.response_id)
+        val id: TextView = view.findViewById(R.id.response_id)
+        val amount: TextView = view.findViewById(R.id.response_amount)
+        val message: TextView = view.findViewById(R.id.response_message)
         val share_button : Button = view.findViewById(R.id.response_share_button)
 
-        id.text = response.id
+        id.text = "#${response.id}"
+        amount.text = "${response.amount}"
+        message.text = response.message
+
         share_button.setOnClickListener {
             val sharingIntent = Intent(android.content.Intent.ACTION_SEND)
             sharingIntent.type = "text/plain"

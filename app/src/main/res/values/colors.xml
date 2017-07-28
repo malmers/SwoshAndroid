@@ -6,4 +6,7 @@
 
     <color name="purple_rain">#8438D2</color>
     <color name="purple_deep">#4F1091</color>
+
+    <color name="labelColor">#888</color>
+    <color name="textColor">#555</color>
 </resources>
