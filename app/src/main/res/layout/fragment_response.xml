@@ -88,7 +88,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="60dp">
+        android:layout_marginBottom="74dp">
 
         <Button
             android:id="@+id/response_share_button"
