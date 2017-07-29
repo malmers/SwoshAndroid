@@ -1,7 +1,9 @@
 package me.swosh.android.fragments
 
+import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.util.Log
 import android.view.View
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -17,6 +19,7 @@ import me.swosh.android.models.SwoshResponse
 import me.swosh.android.domain.SwoshHTTP
 import com.fasterxml.jackson.databind.node.ObjectNode
 import me.swosh.android.R
+import me.swosh.android.activities.MainActivity
 import me.swosh.android.data.Preference
 
 class CreateFragment : Fragment() {
@@ -56,6 +59,28 @@ class CreateFragment : Fragment() {
             }
         }
         return view
+    }
+
+    override fun onAttach(context: Context?) {
+        super.onAttach(context)
+
+        var con = context
+
+        if(con is MainActivity) {
+            con.supportActionBar!!.setTitle(getString(R.string.ACTIONBAR_TITLE_NEW_LINK))
+            con.supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        }
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+
+        var con = context
+
+        if(con is MainActivity) {
+            con.supportActionBar!!.setTitle(getString(R.string.ACTIONBAR_TITLE_YOUR_SWISH_LINKS))
+            con.supportActionBar!!.setDisplayHomeAsUpEnabled(false)
+        }
     }
 
     private fun combineSwoshData(request: SwoshRequest, response: SwoshResponse): Swosh {

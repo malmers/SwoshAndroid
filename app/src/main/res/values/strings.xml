@@ -26,4 +26,10 @@
     <string name="home_placeholder1">You have not created any Swosh links yet :(</string>
     <string name="home_placeholder2">Create a new Swish pay request by clicking the button below</string>
     <string name="home_button">New pay link</string>
+    <string name="TAG_CREATE_FRAGMENT">CREATE_FRAGMENT</string>
+    <string name="TAG_RESPONSE_FRAGMENT">RESPONSE_FRAGMENT</string>
+    <string name="TAG_HOME_FRAGMENT">HOME_FRAGMENT</string>
+    <string name="ACTIONBAR_TITLE_NEW_LINK">Add new</string>
+    <string name="ACTIONBAR_TITLE_YOUR_SWISH_LINKS">Your Swish link</string>
+    <string name="ACTIONBAR_TITLE_SWOSH_LINK">Swish link</string>
 </resources>

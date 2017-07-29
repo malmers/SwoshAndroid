@@ -3,12 +3,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="@dimen/padding_standard"
-    android:background="@drawable/background_gradient"
     android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="76dp"
         android:paddingLeft="30dp"
         android:paddingRight="30dp"
         android:paddingTop="100dp"
@@ -39,7 +39,8 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="50dp">
+        android:paddingBottom="@dimen/padding_standard"
+        android:layout_marginBottom="32dp">
 
         <Button
             android:id="@+id/home_button"
