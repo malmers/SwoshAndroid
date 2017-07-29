@@ -4,10 +4,9 @@ import android.app.FragmentManager
 import android.content.Context
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.view.View
 import android.support.v7.widget.Toolbar
-import android.util.Log
 import android.view.MenuItem
+import android.view.View
 import me.swosh.android.R
 import me.swosh.android.data.Preference
 import me.swosh.android.fragments.CreateFragment
@@ -15,7 +14,10 @@ import me.swosh.android.fragments.HomeFragment
 import me.swosh.android.fragments.ResponseFragment
 import me.swosh.android.models.Swosh
 
-class MainActivity : AppCompatActivity(), FragmentManager.OnBackStackChangedListener {
+class MainActivity : AppCompatActivity(),
+        FragmentManager.OnBackStackChangedListener,
+        HomeFragment.HomeFragmentListener,
+        CreateFragment.CreateFragmentListener {
     override fun onBackStackChanged() {
         supportFragmentManager.popBackStack();
     }
@@ -53,27 +55,6 @@ class MainActivity : AppCompatActivity(), FragmentManager.OnBackStackChangedList
 
         createFragment.setPreference(preference)
 
-        createFragment.setResponseListener(object: CreateFragment.ResponseListener {
-            override fun sendResponse(swosh: Swosh) {
-
-                responseFragment.setResponse(swosh)
-                supportFragmentManager.beginTransaction()
-                    .replace(R.id.fragment_container, responseFragment)
-                    .addToBackStack(getString(R.string.TAG_RESPONSE_FRAGMENT))
-                    .commit()
-            }
-        })
-
-        homeFragment.setHomeListener(object: HomeFragment.HomeListener {
-            override fun sendResponse() {
-
-                supportFragmentManager.beginTransaction()
-                        .replace(R.id.fragment_container, createFragment)
-                        .addToBackStack(getString(R.string.TAG_CREATE_FRAGMENT))
-                        .commit()
-            }
-        })
-
         supportFragmentManager.beginTransaction()
                 .add(R.id.fragment_container, homeFragment)
                 .commit()
@@ -82,5 +63,22 @@ class MainActivity : AppCompatActivity(), FragmentManager.OnBackStackChangedList
     fun initToolbar() {
         val toolbar = findViewById<View>(R.id.my_toolbar) as Toolbar
         setSupportActionBar(toolbar)
+    }
+
+    override fun addClick() {
+
+        supportFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, createFragment)
+                .addToBackStack(getString(R.string.TAG_CREATE_FRAGMENT))
+                .commit()
+    }
+
+    override fun doneClick(swosh: Swosh) {
+
+        responseFragment.setResponse(swosh)
+        supportFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, responseFragment)
+                .addToBackStack(getString(R.string.TAG_RESPONSE_FRAGMENT))
+                .commit()
     }
 }

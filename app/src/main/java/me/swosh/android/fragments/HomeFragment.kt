@@ -3,7 +3,6 @@ package me.swosh.android.fragments
 import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,7 +12,7 @@ import me.swosh.android.activities.MainActivity
 
 class HomeFragment : Fragment() {
 
-    private lateinit var homeListener: HomeListener
+    private lateinit var listener: HomeFragmentListener
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val view = inflater.inflate(R.layout.fragment_home, container, false)
@@ -30,19 +29,18 @@ class HomeFragment : Fragment() {
             con.supportActionBar!!.setTitle(getString(R.string.ACTIONBAR_TITLE_YOUR_SWISH_LINKS))
             con.supportActionBar!!.setDisplayHomeAsUpEnabled(false)
         }
+
+        if(con is HomeFragmentListener)
+            listener = con
     }
 
     private fun updateFields(view: View) {
         view.findViewById<Button>(R.id.home_button).setOnClickListener {
-            homeListener.sendResponse()
+            listener.addClick()
         }
     }
 
-    fun setHomeListener(listener: HomeListener) {
-        this.homeListener = listener
-    }
-
-    interface HomeListener {
-        fun sendResponse()
+    interface HomeFragmentListener {
+        fun addClick()
     }
 }

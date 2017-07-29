@@ -25,7 +25,7 @@ import me.swosh.android.data.Preference
 class CreateFragment : Fragment() {
 
     private lateinit var expiration : String
-    private lateinit var responseListener : ResponseListener
+    private lateinit var listener : CreateFragmentListener
     private lateinit var preference: Preference
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -54,7 +54,7 @@ class CreateFragment : Fragment() {
             transport.sendRequest(request) { response ->
                 response?.let {
                     preference.phone = request.phone
-                    responseListener.sendResponse(combineSwoshData(request, response))
+                    listener.doneClick(combineSwoshData(request, response))
                 }
             }
         }
@@ -70,6 +70,9 @@ class CreateFragment : Fragment() {
             con.supportActionBar!!.setTitle(getString(R.string.ACTIONBAR_TITLE_NEW_LINK))
             con.supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         }
+
+        if(con is CreateFragmentListener)
+            listener = con;
     }
 
     override fun onDetach() {
@@ -81,6 +84,9 @@ class CreateFragment : Fragment() {
             con.supportActionBar!!.setTitle(getString(R.string.ACTIONBAR_TITLE_YOUR_SWISH_LINKS))
             con.supportActionBar!!.setDisplayHomeAsUpEnabled(false)
         }
+
+        if(con is CreateFragmentListener)
+            listener = con
     }
 
     private fun combineSwoshData(request: SwoshRequest, response: SwoshResponse): Swosh {
@@ -99,11 +105,7 @@ class CreateFragment : Fragment() {
         this.preference = preference
     }
 
-    fun setResponseListener(listener : ResponseListener) {
-        responseListener = listener
-    }
-
-    interface ResponseListener {
-        fun sendResponse(swosh: Swosh)
+    interface CreateFragmentListener {
+        fun doneClick(swosh: Swosh)
     }
 }
