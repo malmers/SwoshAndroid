@@ -22,16 +22,21 @@
             app:srcCompat="@drawable/ic_phone_24px"
             android:layout_centerVertical="true"/>
 
-        <EditText
-            android:id="@+id/phone"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="phone"
+        <android.support.design.widget.TextInputLayout
             android:layout_marginStart="@dimen/margin_horizontal_small"
-            android:hint="Phone number"
+            android:layout_centerVertical="true"
             android:layout_toEndOf="@id/phone_icon"
-            android:layout_centerVertical="true"/>
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_container_input">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/phone_text"
+                android:inputType="phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Phone number"/>
+
+        </android.support.design.widget.TextInputLayout>
 
     </RelativeLayout>
 
@@ -46,16 +51,21 @@
             app:srcCompat="@drawable/ic_attach_money_24px"
             android:layout_centerVertical="true"/>
 
-        <EditText
-            android:id="@+id/amount"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="numberSigned"
+        <android.support.design.widget.TextInputLayout
             android:layout_marginStart="@dimen/margin_horizontal_small"
-            android:hint="Amount of monies"
+            android:layout_centerVertical="true"
             android:layout_toEndOf="@id/money_icon"
-            android:layout_centerVertical="true"/>
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_container_input">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/amount"
+                android:inputType="numberDecimal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Amount of monies"/>
+
+        </android.support.design.widget.TextInputLayout>
 
     </RelativeLayout>
 
@@ -71,7 +81,7 @@
             android:layout_centerVertical="true"/>
 
         <Spinner
-            android:id="@+id/expiration"
+            android:id="@+id/expiration_spinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
@@ -86,15 +96,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <EditText
-            android:id="@+id/message"
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textMultiLine"
-            android:hint="Message"/>
-    </RelativeLayout>
+            android:layout_height="wrap_content">
 
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/message"
+                android:inputType="textMultiLine"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Message"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+    </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"

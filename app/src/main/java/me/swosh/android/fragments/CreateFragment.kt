@@ -3,24 +3,22 @@ package me.swosh.android.fragments
 import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.util.Log
-import android.view.View
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
-import android.widget.Button
 import android.widget.EditText
-import android.widget.Spinner
 import com.fasterxml.jackson.databind.ObjectMapper
-import com.fasterxml.jackson.module.kotlin.registerKotlinModule
-import me.swosh.android.models.Swosh
-import me.swosh.android.models.SwoshRequest
-import me.swosh.android.models.SwoshResponse
-import me.swosh.android.domain.SwoshHTTP
 import com.fasterxml.jackson.databind.node.ObjectNode
+import com.fasterxml.jackson.module.kotlin.registerKotlinModule
+import kotlinx.android.synthetic.main.fragment_create.*
 import me.swosh.android.R
 import me.swosh.android.activities.MainActivity
 import me.swosh.android.data.Preference
+import me.swosh.android.domain.SwoshHTTP
+import me.swosh.android.models.Swosh
+import me.swosh.android.models.SwoshRequest
+import me.swosh.android.models.SwoshResponse
 
 class CreateFragment : Fragment() {
 
@@ -30,16 +28,15 @@ class CreateFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_create, container, false)
+        return view
+    }
 
-        val dropdown : Spinner = view.findViewById(R.id.expiration)
-        val phone_field : EditText = view.findViewById(R.id.phone)
-        val amount_field : EditText = view.findViewById(R.id.amount)
-        val message_field : EditText = view.findViewById(R.id.message)
-        val button : Button = view.findViewById(R.id.create_button)
+    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-        phone_field.setText(preference.phone)
+        phone_text.setText(preference.phone)
 
-        dropdown.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+        expiration_spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(parent: AdapterView<*>?) {
             }
 
@@ -48,8 +45,8 @@ class CreateFragment : Fragment() {
             }
         }
 
-        button.setOnClickListener {
-            val request = SwoshRequest(phone_field.text.toString(), intFromTextField(amount_field), message_field.text.toString(), Integer.parseInt(expiration))
+        create_button.setOnClickListener {
+            val request = SwoshRequest(phone_text.text.toString(), intFromTextField(amount), message.text.toString(), Integer.parseInt(expiration))
             val transport = SwoshHTTP()
             transport.sendRequest(request) { response ->
                 response?.let {
@@ -58,7 +55,6 @@ class CreateFragment : Fragment() {
                 }
             }
         }
-        return view
     }
 
     override fun onAttach(context: Context?) {
