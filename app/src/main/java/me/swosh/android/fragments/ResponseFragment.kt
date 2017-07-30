@@ -7,11 +7,10 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.TextView
 import me.swosh.android.R
 import me.swosh.android.activities.MainActivity
 import me.swosh.android.models.Swosh
+import kotlinx.android.synthetic.main.fragment_response.*
 
 class ResponseFragment : Fragment() {
 
@@ -19,7 +18,6 @@ class ResponseFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val view = inflater.inflate(R.layout.fragment_response, container, false)
-        updateFields(view)
         return view
     }
 
@@ -47,17 +45,14 @@ class ResponseFragment : Fragment() {
         this.response = response
     }
 
-    private fun updateFields(view: View) {
-        val id: TextView = view.findViewById(R.id.response_id)
-        val amount: TextView = view.findViewById(R.id.response_amount)
-        val message: TextView = view.findViewById(R.id.response_message)
-        val share_button : Button = view.findViewById(R.id.response_share_button)
+    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-        id.text = "#${response.id}"
-        amount.text = "${response.amount}"
-        message.text = response.message
+        response_id.text = "#${response.id}"
+        response_amount.text = "${response.amount}"
+        response_message.text = response.message
 
-        share_button.setOnClickListener {
+        response_share_button.setOnClickListener {
             val sharingIntent = Intent(android.content.Intent.ACTION_SEND)
             sharingIntent.type = "text/plain"
             sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, response.url)
