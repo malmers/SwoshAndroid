@@ -55,11 +55,11 @@
 
             <ImageView
                 android:id="@+id/card_qr_image"
-                android:layout_alignParentEnd="true"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_gravity="bottom|center_horizontal"
-                android:background="@drawable/round_top" />
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true" />
 
         </RelativeLayout>
 
