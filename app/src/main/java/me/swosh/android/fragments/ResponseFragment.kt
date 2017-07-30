@@ -3,6 +3,7 @@ package me.swosh.android.fragments
 import android.content.Context
 import android.os.Bundle
 import android.content.Intent
+import android.graphics.Color
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +12,8 @@ import me.swosh.android.R
 import me.swosh.android.activities.MainActivity
 import me.swosh.android.models.Swosh
 import kotlinx.android.synthetic.main.fragment_response.*
+import net.glxn.qrgen.android.QRCode
+import net.glxn.qrgen.core.image.ImageType
 
 class ResponseFragment : Fragment() {
 
@@ -48,6 +51,11 @@ class ResponseFragment : Fragment() {
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
+        response_qr.setImageBitmap(QRCode.from(response.url)
+                .withSize(100,100)
+                .withColor(Color.WHITE, Color.TRANSPARENT)
+                .bitmap())
         response_id.text = "#${response.id}"
         response_amount.text = "${response.amount}"
         response_message.text = response.message

@@ -17,13 +17,14 @@
             android:layout_height="1000dp"
             android:layout_gravity="bottom|center_horizontal"
             android:background="@drawable/round_top" />
+
     </FrameLayout>
 
     <TextView
         android:id="@+id/response_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="80dp"
+        android:paddingTop="130dp"
         android:gravity="center"
         android:textSize="22sp"
         android:text="@string/response_id"
@@ -91,6 +92,14 @@
             android:background="@drawable/flat_purple_button"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true" />
+
+        <ImageView
+            android:id="@+id/response_qr"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="40dp" />
 
     </RelativeLayout>
 
