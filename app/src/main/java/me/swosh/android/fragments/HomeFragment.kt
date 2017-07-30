@@ -4,7 +4,6 @@ import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,6 +18,7 @@ class HomeFragment : Fragment() {
     private lateinit var listener: HomeFragmentListener
     private lateinit var swishAdapter: SwishAdapter
     private lateinit var layoutManager: LinearLayoutManager
+    private lateinit var swoshList: ArrayList<Swosh>
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val view = inflater.inflate(R.layout.fragment_home, container, false)
@@ -44,21 +44,23 @@ class HomeFragment : Fragment() {
             listener.addClick()
         }
 
-        var list: ArrayList<Swosh> = ArrayList()
-        /*list.add(Swosh("000", 100, "Test",
-                600, "1337", "http://localhost"))*/
+        if(swoshList.size > 0)
+            info_box.visibility = View.GONE
 
         swish_recycle_list.setHasFixedSize(true)
 
         layoutManager = LinearLayoutManager(context)
         swish_recycle_list.layoutManager = layoutManager
 
-        swishAdapter = SwishAdapter(context, list)
-        swishAdapter.notifyDataSetChanged()
+        swishAdapter = SwishAdapter(context, swoshList)
 
         //swishAdapter.setAdapterListener(context as MainActivity)
         swish_recycle_list.adapter = swishAdapter;
 
+    }
+
+    fun setSwoshList(swoshList: ArrayList<Swosh>) {
+        this.swoshList = swoshList
     }
 
     interface HomeFragmentListener {

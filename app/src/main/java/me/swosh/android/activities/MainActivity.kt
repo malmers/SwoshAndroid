@@ -5,6 +5,8 @@ import android.content.Context
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
+import android.util.ArraySet
+import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import me.swosh.android.R
@@ -13,13 +15,15 @@ import me.swosh.android.fragments.CreateFragment
 import me.swosh.android.fragments.HomeFragment
 import me.swosh.android.fragments.ResponseFragment
 import me.swosh.android.models.Swosh
+import org.json.JSONObject
 
 class MainActivity : AppCompatActivity(),
         FragmentManager.OnBackStackChangedListener,
         HomeFragment.HomeFragmentListener,
         CreateFragment.CreateFragmentListener {
+
     override fun onBackStackChanged() {
-        supportFragmentManager.popBackStack();
+        supportFragmentManager.popBackStack()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -39,25 +43,46 @@ class MainActivity : AppCompatActivity(),
         }
     }
 
+    var swoshList: ArrayList<Swosh> = ArrayList()
+
     lateinit var homeFragment : HomeFragment
     lateinit var createFragment : CreateFragment
     lateinit var responseFragment : ResponseFragment
+    lateinit var preference: Preference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.fragment_container)
         initToolbar()
 
-        val preference = Preference(getPreferences(Context.MODE_PRIVATE))
+        preference = Preference(getPreferences(Context.MODE_PRIVATE))
+
         homeFragment = HomeFragment()
         createFragment = CreateFragment()
         responseFragment = ResponseFragment()
-
         createFragment.setPreference(preference)
+
+        loadSwoshes()
 
         supportFragmentManager.beginTransaction()
                 .add(R.id.fragment_container, homeFragment)
                 .commit()
+    }
+
+    /**
+     * Loads all active swoshes from memory
+     */
+    fun loadSwoshes() {
+
+        val swoshStrings: Set<String> = preference.swoshes
+
+        if(swoshStrings != null)
+            swoshStrings.forEach { s -> swoshList.add(buildSwoshFromString(s)) }
+
+        homeFragment.setSwoshList(swoshList)
+
+        Log.d("MainActivity ", "LOAD DONE")
+        Log.d("MainActivity ", "Loaded swoshList of size: " + swoshList.size)
     }
 
     fun initToolbar() {
@@ -75,10 +100,49 @@ class MainActivity : AppCompatActivity(),
 
     override fun doneClick(swosh: Swosh) {
 
+        swoshList.add(swosh)
+
+        Log.d("MainActivity ", "Added swosh to list of new size: " + swoshList.size)
+
+        val oldSwoshes: Set<String> = preference.swoshes
+        var swoshes: Set<String> = ArraySet<String>()
+
+        swoshes = swoshes.plus(oldSwoshes)
+        swoshes = swoshes.plus(jsonifySwosh(swosh).toString())
+
+
+        Log.d("MainActivity ", "Saved swoshes of size: " + swoshes.size)
+
+        preference.swoshes = swoshes
+
         responseFragment.setResponse(swosh)
         supportFragmentManager.beginTransaction()
                 .replace(R.id.fragment_container, responseFragment)
                 .addToBackStack(getString(R.string.TAG_RESPONSE_FRAGMENT))
                 .commit()
+    }
+
+    fun jsonifySwosh(swosh : Swosh): JSONObject {
+        var jsonObject: JSONObject = JSONObject()
+        jsonObject.accumulate(getString(R.string.JSON_TAG_PHONE), swosh.phone)
+        jsonObject.accumulate(getString(R.string.JSON_TAG_AMOUNT), swosh.amount)
+        jsonObject.accumulate(getString(R.string.JSON_TAG_MESSAGE), swosh.message)
+        jsonObject.accumulate(getString(R.string.JSON_TAG_EXPIRATION), swosh.expireAfterSeconds)
+        jsonObject.accumulate(getString(R.string.JSON_TAG_ID), swosh.id)
+        jsonObject.accumulate(getString(R.string.JSON_TAG_URL), swosh.url)
+
+        return jsonObject
+    }
+
+
+    fun buildSwoshFromString(jsonString: String): Swosh {
+
+        var json: JSONObject = JSONObject(jsonString)
+        return Swosh(json.getString(getString(R.string.JSON_TAG_PHONE)),
+                json.getInt(getString(R.string.JSON_TAG_AMOUNT)),
+                json.getString(getString(R.string.JSON_TAG_MESSAGE)),
+                json.getInt(getString(R.string.JSON_TAG_EXPIRATION)),
+                json.getString(getString(R.string.JSON_TAG_ID)),
+                json.getString(getString(R.string.JSON_TAG_URL)))
     }
 }

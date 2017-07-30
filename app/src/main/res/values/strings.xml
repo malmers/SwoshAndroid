@@ -30,6 +30,13 @@
     <string name="TAG_RESPONSE_FRAGMENT">RESPONSE_FRAGMENT</string>
     <string name="TAG_HOME_FRAGMENT">HOME_FRAGMENT</string>
     <string name="ACTIONBAR_TITLE_NEW_LINK">Add new</string>
-    <string name="ACTIONBAR_TITLE_YOUR_SWISH_LINKS">Your Swish link</string>
+    <string name="ACTIONBAR_TITLE_YOUR_SWISH_LINKS">Active Swish links</string>
     <string name="ACTIONBAR_TITLE_SWOSH_LINK">Swish link</string>
+    <string name="SHARED_PREFS_SWOSHES">SHARED_PREFS_SWOSHES</string>
+    <string name="JSON_TAG_PHONE">JSON_PHONE</string>
+    <string name="JSON_TAG_AMOUNT">JSON_AMOUNT</string>
+    <string name="JSON_TAG_MESSAGE">JSON_MESSAGE</string>
+    <string name="JSON_TAG_EXPIRATION">JSON_EXPIRATION</string>
+    <string name="JSON_TAG_ID">JSON_ID</string>
+    <string name="JSON_TAG_URL">JSON_URL</string>
 </resources>
