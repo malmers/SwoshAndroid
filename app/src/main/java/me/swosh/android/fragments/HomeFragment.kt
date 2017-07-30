@@ -23,15 +23,13 @@ class HomeFragment : Fragment() {
     override fun onAttach(context: Context?) {
         super.onAttach(context)
 
-        var con = context
-
-        if(con is MainActivity) {
-            con.supportActionBar!!.setTitle(getString(R.string.ACTIONBAR_TITLE_YOUR_SWISH_LINKS))
-            con.supportActionBar!!.setDisplayHomeAsUpEnabled(false)
+        if(context is MainActivity) {
+            context.supportActionBar!!.setTitle(getString(R.string.ACTIONBAR_TITLE_YOUR_SWISH_LINKS))
+            context.supportActionBar!!.setDisplayHomeAsUpEnabled(false)
         }
 
-        if(con is HomeFragmentListener)
-            listener = con
+        if(context is HomeFragmentListener)
+            listener = context
     }
 
     private fun updateFields(view: View) {

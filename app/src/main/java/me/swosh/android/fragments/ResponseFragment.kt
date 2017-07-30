@@ -26,18 +26,16 @@ class ResponseFragment : Fragment() {
     override fun onAttach(context: Context?) {
         super.onAttach(context)
 
-        var con = context
-
-        if(con is MainActivity) {
-            con.supportActionBar!!.setTitle(getString(R.string.ACTIONBAR_TITLE_SWOSH_LINK))
-            con.supportActionBar!!.setDisplayHomeAsUpEnabled(false)
+        if(context is MainActivity) {
+            context.supportActionBar!!.setTitle(getString(R.string.ACTIONBAR_TITLE_SWOSH_LINK))
+            context.supportActionBar!!.setDisplayHomeAsUpEnabled(false)
         }
     }
 
     override fun onDetach() {
         super.onDetach()
 
-        var con = context
+        val con = context
 
         if(con is MainActivity) {
             con.supportActionBar!!.setTitle(getString(R.string.ACTIONBAR_TITLE_YOUR_SWISH_LINKS))
