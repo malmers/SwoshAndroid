@@ -1,7 +1,9 @@
 package me.swosh.android.fragments
 
+import android.annotation.TargetApi
 import android.content.Context
 import android.graphics.Color
+import android.os.Build
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
@@ -48,7 +50,7 @@ class SwishAdapter(context: Context, swoshList: ArrayList<Swosh>)
         holder.amountText.text = swosh.amount.toString()
         holder.qrImage.setImageBitmap(QRCode.from(swosh.url)
                 .withSize(100,100)
-                .withColor(context.getColor(R.color.textColor), Color.TRANSPARENT)
+                .withColor(context.resources.getColor(R.color.textColor), Color.TRANSPARENT)
                 .bitmap())
     }
 
