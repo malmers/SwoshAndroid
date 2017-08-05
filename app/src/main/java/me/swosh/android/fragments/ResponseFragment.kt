@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.content.Intent
 import android.graphics.Color
 import android.support.v4.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -33,17 +34,6 @@ class ResponseFragment : Fragment() {
         }
     }
 
-    override fun onDetach() {
-        super.onDetach()
-
-        val con = context
-
-        if(con is MainActivity) {
-            con.supportActionBar!!.setTitle(getString(R.string.ACTIONBAR_TITLE_YOUR_SWISH_LINKS))
-            con.supportActionBar!!.setDisplayHomeAsUpEnabled(false)
-        }
-    }
-
     fun setResponse(response: Swosh) {
         this.response = response
     }
@@ -59,6 +49,16 @@ class ResponseFragment : Fragment() {
         response_id.text = "#${response.id}"
         response_amount.text = "${response.amount}"
         response_message.text = response.message
+        response_phone.text = response.phone
+        response_expiration.text = response.expireAfterSeconds.toString()
+        response_done_button.setOnClickListener {
+
+            // if user is coming from createFragment, pop an addition fragment
+            if(fragmentManager.backStackEntryCount >= 2)
+                fragmentManager.popBackStack()
+
+            fragmentManager.popBackStack()
+        }
 
         response_share_button.setOnClickListener {
             val sharingIntent = Intent(android.content.Intent.ACTION_SEND)
