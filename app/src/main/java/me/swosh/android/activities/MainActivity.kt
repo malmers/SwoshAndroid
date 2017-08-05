@@ -14,13 +14,15 @@ import me.swosh.android.data.Preference
 import me.swosh.android.fragments.CreateFragment
 import me.swosh.android.fragments.HomeFragment
 import me.swosh.android.fragments.ResponseFragment
+import me.swosh.android.fragments.SwishAdapter
 import me.swosh.android.models.Swosh
 import org.json.JSONObject
 
 class MainActivity : AppCompatActivity(),
         FragmentManager.OnBackStackChangedListener,
         HomeFragment.HomeFragmentListener,
-        CreateFragment.CreateFragmentListener {
+        CreateFragment.CreateFragmentListener,
+        SwishAdapter.AdapterListener {
 
     override fun onBackStackChanged() {
         supportFragmentManager.popBackStack()
@@ -115,6 +117,14 @@ class MainActivity : AppCompatActivity(),
 
         preference.swoshes = swoshes
 
+        responseFragment.setResponse(swosh)
+        supportFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, responseFragment)
+                .addToBackStack(getString(R.string.TAG_RESPONSE_FRAGMENT))
+                .commit()
+    }
+
+    override fun onCardClick(swosh: Swosh) {
         responseFragment.setResponse(swosh)
         supportFragmentManager.beginTransaction()
                 .replace(R.id.fragment_container, responseFragment)

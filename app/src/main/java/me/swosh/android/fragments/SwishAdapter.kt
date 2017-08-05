@@ -3,6 +3,7 @@ package me.swosh.android.fragments
 import android.content.Context
 import android.graphics.Color
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,12 +21,19 @@ class SwishAdapter(context: Context, swoshList: ArrayList<Swosh>)
     : RecyclerView.Adapter<SwishAdapter.SwishViewHolder>() {
 
     private val swoshList: List<Swosh> = swoshList
-    private val context: Context = context // TODO add this as listener to card events
+    private val context: Context = context
+    private lateinit var adapterListener: AdapterListener
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SwishViewHolder? {
         val layoutView = LayoutInflater.from(parent.context)
                 .inflate(R.layout.swish_card, null)
         val viewHolder = SwishViewHolder(layoutView)
+
+        Log.d("SwishAdapter", "context is AdapterListener: " + (context is AdapterListener))
+        Log.d("SwishAdapter", "context is : " + (context))
+
+        if(context is AdapterListener)
+            adapterListener = context
 
         return viewHolder
     }
@@ -33,13 +41,14 @@ class SwishAdapter(context: Context, swoshList: ArrayList<Swosh>)
     override fun onBindViewHolder(holder: SwishViewHolder, position: Int) {
 
         val swosh: Swosh = swoshList[position]
+        holder.itemView.setOnClickListener{ adapterListener.onCardClick(swosh) }
 
         holder.messageText.text = swosh.message
         holder.expirationText.text = swosh.expireAfterSeconds.toString()
         holder.amountText.text = swosh.amount.toString()
         holder.qrImage.setImageBitmap(QRCode.from(swosh.url)
                 .withSize(100,100)
-                .withColor(context.resources.getColor(R.color.textColor), Color.TRANSPARENT)
+                .withColor(context.getColor(R.color.textColor), Color.TRANSPARENT)
                 .bitmap())
     }
 
@@ -53,5 +62,9 @@ class SwishAdapter(context: Context, swoshList: ArrayList<Swosh>)
         var messageText: TextView = itemView!!.findViewById(R.id.card_message_text)
         var expirationText: TextView = itemView!!.findViewById(R.id.card_expiration_text)
         var qrImage: ImageView = itemView!!.findViewById(R.id.card_qr_image)
+    }
+
+    interface AdapterListener {
+        fun onCardClick(swosh: Swosh)
     }
 }
