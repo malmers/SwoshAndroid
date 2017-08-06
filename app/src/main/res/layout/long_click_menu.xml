@@ -6,7 +6,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="325dp"
         android:clickable="true"
         android:background="@android:color/transparent"
         android:id="@+id/top_area">
@@ -16,20 +16,66 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/background_gradient"
+        android:background="@drawable/background_darker_gradient"
         android:paddingLeft="@dimen/margin_small"
         android:paddingTop="@dimen/margin_small">
 
+        <ImageView
+            android:id="@+id/menu_qr"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_centerHorizontal="true"/>
+
         <TextView
-            android:id="@+id/snooze_text"
+            android:id="@+id/menu_message"
+            android:layout_marginTop="@dimen/margin_small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:text="Pizza monies naauuw!"
+            android:textStyle="bold"
+            android:alpha="175"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/menu_qr"
+            android:textColor="@color/colorAccent" />
+
+        <TextView
+            android:id="@+id/menu_amount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:text="Edit"
-            android:textColor="#EEE"
+            android:text="300 sek"
+            android:textColor="@color/colorAccent"
+            android:layout_below="@+id/menu_message"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:alpha="175" />
+
+        <TextView
+            android:id="@+id/menu_edit_button"
+            android:clickable="true"
+            android:layout_marginTop="@dimen/margin_small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="@string/menu_edit"
+            android:textColor="@color/colorAccent"
+            android:layout_below="@+id/menu_amount"
             android:textSize="24sp"
             android:textStyle="bold" />
 
+        <TextView
+            android:id="@+id/menu_delete_button"
+            android:clickable="true"
+            android:layout_marginTop="@dimen/margin_small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="@string/menu_delete"
+            android:textColor="@color/colorAccent"
+            android:layout_below="@+id/menu_edit_button"
+            android:textSize="24sp"
+            android:textStyle="bold" />
 
     </RelativeLayout>
 
