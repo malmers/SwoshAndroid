@@ -135,12 +135,13 @@ class MainActivity : AppCompatActivity(),
 
     override fun onCardLongClick(swosh: Swosh): Boolean {
 
-        var transaction: FragmentTransaction = supportFragmentManager.beginTransaction()
-
         var optionsMenuFragment: OptionsMenuFragment = OptionsMenuFragment()
         optionsMenuFragment.setSwosh(swosh)
-
-        optionsMenuFragment.show(transaction, "dialog")
+        optionsMenuFragment.setEditButtonListener(View.OnClickListener {
+            onCardClick(swosh)
+        })
+        optionsMenuFragment.show(supportFragmentManager.beginTransaction(),
+                "dialog")
 
         return true
     }

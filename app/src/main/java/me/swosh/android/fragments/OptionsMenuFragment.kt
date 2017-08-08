@@ -18,6 +18,7 @@ import net.glxn.qrgen.android.QRCode
 class OptionsMenuFragment : BottomSheetDialogFragment() {
 
     private lateinit var swosh: Swosh
+    private lateinit var editButtonListener: View.OnClickListener
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val view = inflater.inflate(R.layout.long_click_menu, container, false)
@@ -38,9 +39,14 @@ class OptionsMenuFragment : BottomSheetDialogFragment() {
                 .bitmap())
         menu_amount.text = swosh.amount.toString()
         menu_message.text = swosh.message
+        menu_edit_button.setOnClickListener { editButtonListener.onClick(view) }
     }
 
     fun setSwosh(swosh: Swosh) {
         this.swosh = swosh
+    }
+
+    fun setEditButtonListener(editButtonListener: View.OnClickListener) {
+        this.editButtonListener = editButtonListener
     }
 }
