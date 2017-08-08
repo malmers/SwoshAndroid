@@ -14,6 +14,7 @@ import com.fasterxml.jackson.module.kotlin.registerKotlinModule
 import kotlinx.android.synthetic.main.fragment_create.*
 import me.swosh.android.R
 import me.swosh.android.activities.MainActivity
+import me.swosh.android.data.HistoryStorage
 import me.swosh.android.data.Preference
 import me.swosh.android.domain.SwoshHTTP
 import me.swosh.android.models.Swosh
@@ -25,6 +26,7 @@ class CreateFragment : Fragment() {
     private lateinit var expiration : String
     private lateinit var listener : CreateFragmentListener
     private lateinit var preference: Preference
+    private lateinit var history: HistoryStorage
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_create, container, false)
@@ -85,6 +87,10 @@ class CreateFragment : Fragment() {
 
     private fun intFromTextField(field: EditText) : Int {
         return Integer.parseInt(field.text.toString())
+    }
+
+    fun setHistory(history: HistoryStorage) {
+        this.history = history
     }
 
     fun setPreference(preference: Preference) {

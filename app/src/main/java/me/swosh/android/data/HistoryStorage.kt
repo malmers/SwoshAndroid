@@ -8,14 +8,14 @@ import java.io.File
 import java.util.*
 
 class HistoryStorage(directory: File) {
-    private val filename = "file.txt"
+    private val filename = "SWOSH_HISTORY"
     private val file = File(directory, filename)
     private var swoshList = LinkedList<Swosh>()
 
     fun addSwosh(swosh: Swosh) {
         val mapper = ObjectMapper().registerKotlinModule()
         swoshList.add(swosh)
-        file.appendText(mapper.writeValueAsString(swosh))
+        file.appendText(mapper.writeValueAsString(swosh) + "\n")
     }
 
     fun getSwoshList(): List<Swosh> {

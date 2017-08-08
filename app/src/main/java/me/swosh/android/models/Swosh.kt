@@ -1,15 +1,10 @@
 package me.swosh.android.models
 
-class Swosh(request: SwoshRequest, response: SwoshResponse) {
-    val phone = request.phone
-    val amount = request.amount
-    val message = request.message
-    val expiration = expireTimeStamp(request.expireAfterSeconds)
-    val id = response.id
-    val url = response.url
+class Swosh(val amount: Int, expiration: Int, val id: String, val message: String, val phone: String, val url: String) {
+    val expiration = expireTimeStamp(expiration)
 
-    constructor(phone: String, amount: Int, message: String, expire: Int, id: String, url: String):
-            this(SwoshRequest(phone, amount, message, expire), SwoshResponse(id, url)) {
+    constructor(request: SwoshRequest, response: SwoshResponse):
+            this(request.amount, request.expireAfterSeconds, response.id, request.message, request.phone, response.url) {
     }
 
     private fun expireTimeStamp(expire: Int): Long {

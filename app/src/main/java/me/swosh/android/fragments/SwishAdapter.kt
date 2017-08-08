@@ -13,7 +13,7 @@ import me.swosh.android.R
 import me.swosh.android.models.Swosh
 import net.glxn.qrgen.android.QRCode
 
-class SwishAdapter(context: Context, swoshList: ArrayList<Swosh>)
+class SwishAdapter(context: Context, swoshList: List<Swosh>)
     : RecyclerView.Adapter<SwishAdapter.SwishViewHolder>() {
 
     private val swoshList: List<Swosh> = swoshList

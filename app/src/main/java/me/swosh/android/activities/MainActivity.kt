@@ -1,23 +1,17 @@
 package me.swosh.android.activities
 
-import android.app.Dialog
-import android.app.DialogFragment
 import android.app.FragmentManager
 import android.content.Context
 import android.os.Bundle
-import android.support.design.widget.BottomSheetBehavior
-import android.support.v4.app.FragmentTransaction
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
-import android.util.ArraySet
-import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import me.swosh.android.R
+import me.swosh.android.data.HistoryStorage
 import me.swosh.android.data.Preference
 import me.swosh.android.fragments.*
 import me.swosh.android.models.Swosh
-import org.json.JSONObject
 
 class MainActivity : AppCompatActivity(),
         FragmentManager.OnBackStackChangedListener,
@@ -31,7 +25,7 @@ class MainActivity : AppCompatActivity(),
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
-        when (item.getItemId()) {
+        when (item.itemId) {
             android.R.id.home -> {
                 val fragmentManager = supportFragmentManager
                 if (fragmentManager.backStackEntryCount > 0) {
@@ -46,12 +40,11 @@ class MainActivity : AppCompatActivity(),
         }
     }
 
-    var swoshList: ArrayList<Swosh> = ArrayList()
-
     lateinit var homeFragment : HomeFragment
     lateinit var createFragment : CreateFragment
     lateinit var responseFragment : ResponseFragment
     lateinit var preference: Preference
+    lateinit var history: HistoryStorage
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,33 +52,19 @@ class MainActivity : AppCompatActivity(),
         initToolbar()
 
         preference = Preference(getPreferences(Context.MODE_PRIVATE))
+        history = HistoryStorage(filesDir)
 
         homeFragment = HomeFragment()
         createFragment = CreateFragment()
         responseFragment = ResponseFragment()
-        createFragment.setPreference(preference)
 
-        loadSwoshes()
+        homeFragment.setHistory(history)
+        createFragment.setHistory(history)
+        createFragment.setPreference(preference)
 
         supportFragmentManager.beginTransaction()
                 .add(R.id.fragment_container, homeFragment)
                 .commit()
-    }
-
-    /**
-     * Loads all active swoshes from memory
-     */
-    fun loadSwoshes() {
-
-        val swoshStrings: Set<String> = preference.swoshes
-
-        if(swoshStrings != null)
-            swoshStrings.forEach { s -> swoshList.add(buildSwoshFromString(s)) }
-
-        homeFragment.setSwoshList(swoshList)
-
-        Log.d("MainActivity ", "LOAD DONE")
-        Log.d("MainActivity ", "Loaded swoshList of size: " + swoshList.size)
     }
 
     fun initToolbar() {
@@ -103,20 +82,7 @@ class MainActivity : AppCompatActivity(),
 
     override fun doneClick(swosh: Swosh) {
 
-        swoshList.add(swosh)
-
-        Log.d("MainActivity ", "Added swosh to list of new size: " + swoshList.size)
-
-        val oldSwoshes: Set<String> = preference.swoshes
-        var swoshes: Set<String> = ArraySet<String>()
-
-        swoshes = swoshes.plus(oldSwoshes)
-        swoshes = swoshes.plus(jsonifySwosh(swosh).toString())
-
-
-        Log.d("MainActivity ", "Saved swoshes of size: " + swoshes.size)
-
-        preference.swoshes = swoshes
+        history.addSwosh(swosh)
 
         responseFragment.setResponse(swosh)
         supportFragmentManager.beginTransaction()
@@ -144,29 +110,5 @@ class MainActivity : AppCompatActivity(),
                 "dialog")
 
         return true
-    }
-
-    fun jsonifySwosh(swosh : Swosh): JSONObject {
-        var jsonObject: JSONObject = JSONObject()
-        jsonObject.accumulate(getString(R.string.JSON_TAG_PHONE), swosh.phone)
-        jsonObject.accumulate(getString(R.string.JSON_TAG_AMOUNT), swosh.amount)
-        jsonObject.accumulate(getString(R.string.JSON_TAG_MESSAGE), swosh.message)
-        jsonObject.accumulate(getString(R.string.JSON_TAG_EXPIRATION), swosh.expiration)
-        jsonObject.accumulate(getString(R.string.JSON_TAG_ID), swosh.id)
-        jsonObject.accumulate(getString(R.string.JSON_TAG_URL), swosh.url)
-
-        return jsonObject
-    }
-
-
-    fun buildSwoshFromString(jsonString: String): Swosh {
-
-        var json: JSONObject = JSONObject(jsonString)
-        return Swosh(json.getString(getString(R.string.JSON_TAG_PHONE)),
-                json.getInt(getString(R.string.JSON_TAG_AMOUNT)),
-                json.getString(getString(R.string.JSON_TAG_MESSAGE)),
-                json.getInt(getString(R.string.JSON_TAG_EXPIRATION)),
-                json.getString(getString(R.string.JSON_TAG_ID)),
-                json.getString(getString(R.string.JSON_TAG_URL)))
     }
 }
