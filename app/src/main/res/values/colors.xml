@@ -9,4 +9,6 @@
 
     <color name="labelColor">#888</color>
     <color name="textColor">#555</color>
+
+    <color name="black">#000</color>
 </resources>

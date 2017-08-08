@@ -1,8 +1,12 @@
 package me.swosh.android.activities
 
+import android.app.Dialog
+import android.app.DialogFragment
 import android.app.FragmentManager
 import android.content.Context
 import android.os.Bundle
+import android.support.design.widget.BottomSheetBehavior
+import android.support.v4.app.FragmentTransaction
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.util.ArraySet
@@ -131,11 +135,11 @@ class MainActivity : AppCompatActivity(),
 
     override fun onCardLongClick(swosh: Swosh): Boolean {
 
-        homeFragment.dim(1.0f, 0.25f)
-        supportFragmentManager.beginTransaction()
-                .add(R.id.fragment_container, OptionsMenuFragment())
-                .addToBackStack("OPTIONS_MENU")
-                .commit()
+        var transaction: FragmentTransaction = supportFragmentManager.beginTransaction()
+
+        var df: OptionsMenuFragment = OptionsMenuFragment()
+        df.show(transaction, "dialog")
+
         return true
     }
 

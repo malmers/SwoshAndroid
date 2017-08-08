@@ -1,24 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:clickable="true"
-        android:background="@android:color/transparent"
-        android:id="@+id/top_area">
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/background_darker_gradient"
-        android:paddingLeft="@dimen/margin_small"
-        android:paddingTop="@dimen/margin_small">
+    android:layout_height="match_parent"
+    android:background="@drawable/background_darker_gradient"
+    android:paddingTop="@dimen/margin_small"
+    android:paddingBottom="@dimen/margin_huge">
 
         <ImageView
             android:id="@+id/menu_qr"
@@ -54,7 +41,7 @@
         <TextView
             android:id="@+id/menu_share_button"
             android:clickable="true"
-            android:layout_marginTop="@dimen/margin_small"
+            android:layout_marginTop="@dimen/margin_standard"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
@@ -67,7 +54,7 @@
         <TextView
             android:id="@+id/menu_edit_button"
             android:clickable="true"
-            android:layout_marginTop="@dimen/margin_small"
+            android:layout_marginTop="@dimen/margin_standard"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
@@ -80,7 +67,7 @@
         <TextView
             android:id="@+id/menu_delete_button"
             android:clickable="true"
-            android:layout_marginTop="@dimen/margin_small"
+            android:layout_marginTop="@dimen/margin_standard"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
@@ -90,6 +77,4 @@
             android:textSize="24sp"
             android:textStyle="bold" />
 
-    </RelativeLayout>
-
-</LinearLayout>
+</RelativeLayout>
