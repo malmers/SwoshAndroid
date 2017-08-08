@@ -44,6 +44,7 @@ class SwishAdapter(context: Context, swoshList: ArrayList<Swosh>)
 
         val swosh: Swosh = swoshList[position]
         holder.itemView.setOnClickListener{ adapterListener.onCardClick(swosh) }
+        holder.itemView.setOnLongClickListener{ adapterListener.onCardLongClick(swosh) }
 
         holder.messageText.text = swosh.message
         holder.expirationText.text = swosh.expireAfterSeconds.toString()
@@ -68,5 +69,6 @@ class SwishAdapter(context: Context, swoshList: ArrayList<Swosh>)
 
     interface AdapterListener {
         fun onCardClick(swosh: Swosh)
+        fun onCardLongClick(swosh: Swosh): Boolean
     }
 }

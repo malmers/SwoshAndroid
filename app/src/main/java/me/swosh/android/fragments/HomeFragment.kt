@@ -7,6 +7,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AlphaAnimation
 import me.swosh.android.R
 import me.swosh.android.activities.MainActivity
 import kotlinx.android.synthetic.main.fragment_home.*
@@ -59,6 +60,15 @@ class HomeFragment : Fragment() {
 
     }
 
+    fun dim(startValue: Float, endValue: Float) {
+
+        val ani: AlphaAnimation = AlphaAnimation(startValue, endValue)
+        ani.duration = 500 // set duration to 0.5 seconds
+        ani.fillAfter = true
+
+        view!!.startAnimation(ani)
+    }
+
     fun setSwoshList(swoshList: ArrayList<Swosh>) {
         this.swoshList = swoshList
     }
@@ -66,4 +76,5 @@ class HomeFragment : Fragment() {
     interface HomeFragmentListener {
         fun addClick()
     }
+
 }

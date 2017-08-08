@@ -11,10 +11,7 @@ import android.view.MenuItem
 import android.view.View
 import me.swosh.android.R
 import me.swosh.android.data.Preference
-import me.swosh.android.fragments.CreateFragment
-import me.swosh.android.fragments.HomeFragment
-import me.swosh.android.fragments.ResponseFragment
-import me.swosh.android.fragments.SwishAdapter
+import me.swosh.android.fragments.*
 import me.swosh.android.models.Swosh
 import org.json.JSONObject
 
@@ -130,6 +127,16 @@ class MainActivity : AppCompatActivity(),
                 .replace(R.id.fragment_container, responseFragment)
                 .addToBackStack(getString(R.string.TAG_RESPONSE_FRAGMENT))
                 .commit()
+    }
+
+    override fun onCardLongClick(swosh: Swosh): Boolean {
+
+        homeFragment.dim(1.0f, 0.25f)
+        supportFragmentManager.beginTransaction()
+                .add(R.id.fragment_container, OptionsMenuFragment())
+                .addToBackStack("OPTIONS_MENU")
+                .commit()
+        return true
     }
 
     fun jsonifySwosh(swosh : Swosh): JSONObject {

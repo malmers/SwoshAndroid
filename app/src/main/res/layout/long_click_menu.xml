@@ -6,7 +6,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="325dp"
+        android:layout_height="300dp"
         android:clickable="true"
         android:background="@android:color/transparent"
         android:id="@+id/top_area">
@@ -52,6 +52,19 @@
             android:alpha="175" />
 
         <TextView
+            android:id="@+id/menu_share_button"
+            android:clickable="true"
+            android:layout_marginTop="@dimen/margin_small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="@string/menu_share"
+            android:textColor="@color/colorAccent"
+            android:layout_below="@+id/menu_amount"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <TextView
             android:id="@+id/menu_edit_button"
             android:clickable="true"
             android:layout_marginTop="@dimen/margin_small"
@@ -60,7 +73,7 @@
             android:layout_centerHorizontal="true"
             android:text="@string/menu_edit"
             android:textColor="@color/colorAccent"
-            android:layout_below="@+id/menu_amount"
+            android:layout_below="@+id/menu_share_button"
             android:textSize="24sp"
             android:textStyle="bold" />
 

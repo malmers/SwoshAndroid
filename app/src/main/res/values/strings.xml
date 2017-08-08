@@ -39,6 +39,7 @@
     <string name="JSON_TAG_EXPIRATION">JSON_EXPIRATION</string>
     <string name="JSON_TAG_ID">JSON_ID</string>
     <string name="JSON_TAG_URL">JSON_URL</string>
+    <string name="menu_share">Share</string>
     <string name="menu_edit">Edit</string>
     <string name="menu_delete">Delete</string>
 </resources>
