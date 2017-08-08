@@ -51,7 +51,7 @@ class CreateFragment : Fragment() {
             transport.sendRequest(request) { response ->
                 response?.let {
                     preference.phone = request.phone
-                    listener.doneClick(combineSwoshData(request, response))
+                    listener.doneClick(Swosh(request, response))
                 }
             }
         }
@@ -81,14 +81,6 @@ class CreateFragment : Fragment() {
 
         if(con is CreateFragmentListener)
             listener = con
-    }
-
-    private fun combineSwoshData(request: SwoshRequest, response: SwoshResponse): Swosh {
-        val mapper = ObjectMapper().registerKotlinModule()
-        val node = mapper.convertValue(request, ObjectNode::class.java)
-        node.put("id", response.id)
-        node.put("url", response.url)
-        return mapper.convertValue(node, Swosh::class.java)
     }
 
     private fun intFromTextField(field: EditText) : Int {

@@ -1,9 +1,7 @@
 package me.swosh.android.fragments
 
-import android.annotation.TargetApi
 import android.content.Context
 import android.graphics.Color
-import android.os.Build
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
@@ -14,10 +12,6 @@ import android.widget.TextView
 import me.swosh.android.R
 import me.swosh.android.models.Swosh
 import net.glxn.qrgen.android.QRCode
-
-/**
- * Created by mikael on 2017-07-30.
- */
 
 class SwishAdapter(context: Context, swoshList: ArrayList<Swosh>)
     : RecyclerView.Adapter<SwishAdapter.SwishViewHolder>() {
@@ -47,7 +41,7 @@ class SwishAdapter(context: Context, swoshList: ArrayList<Swosh>)
         holder.itemView.setOnLongClickListener{ adapterListener.onCardLongClick(swosh) }
 
         holder.messageText.text = swosh.message
-        holder.expirationText.text = swosh.expireAfterSeconds.toString()
+        holder.expirationText.text = swosh.expiration.toString()
         holder.amountText.text = swosh.amount.toString()
         holder.qrImage.setImageBitmap(QRCode.from(swosh.url)
                 .withSize(100,100)

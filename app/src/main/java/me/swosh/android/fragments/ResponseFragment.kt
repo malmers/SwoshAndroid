@@ -50,7 +50,7 @@ class ResponseFragment : Fragment() {
         response_amount.text = "${response.amount}"
         response_message.text = response.message
         response_phone.text = response.phone
-        response_expiration.text = response.expireAfterSeconds.toString()
+        response_expiration.text = response.expiration.toString()
         response_done_button.setOnClickListener {
 
             // if user is coming from createFragment, pop an addition fragment

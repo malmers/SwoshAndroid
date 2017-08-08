@@ -151,7 +151,7 @@ class MainActivity : AppCompatActivity(),
         jsonObject.accumulate(getString(R.string.JSON_TAG_PHONE), swosh.phone)
         jsonObject.accumulate(getString(R.string.JSON_TAG_AMOUNT), swosh.amount)
         jsonObject.accumulate(getString(R.string.JSON_TAG_MESSAGE), swosh.message)
-        jsonObject.accumulate(getString(R.string.JSON_TAG_EXPIRATION), swosh.expireAfterSeconds)
+        jsonObject.accumulate(getString(R.string.JSON_TAG_EXPIRATION), swosh.expiration)
         jsonObject.accumulate(getString(R.string.JSON_TAG_ID), swosh.id)
         jsonObject.accumulate(getString(R.string.JSON_TAG_URL), swosh.url)
 
