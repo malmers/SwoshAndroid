@@ -137,8 +137,10 @@ class MainActivity : AppCompatActivity(),
 
         var transaction: FragmentTransaction = supportFragmentManager.beginTransaction()
 
-        var df: OptionsMenuFragment = OptionsMenuFragment()
-        df.show(transaction, "dialog")
+        var optionsMenuFragment: OptionsMenuFragment = OptionsMenuFragment()
+        optionsMenuFragment.setSwosh(swosh)
+
+        optionsMenuFragment.show(transaction, "dialog")
 
         return true
     }
