@@ -27,7 +27,10 @@ class HistoryStorage(directory: File) {
         val mapper = jacksonObjectMapper().registerKotlinModule()
         val lines = file.readLines()
         lines.forEach {
-            swoshList.add(mapper.readValue(it, Swosh::class.java))
+            val swosh = mapper.readValue(it, Swosh::class.java)
+            if(!swosh.isExpired()) {
+                swoshList.add(swosh)
+            }
         }
     }
 }
