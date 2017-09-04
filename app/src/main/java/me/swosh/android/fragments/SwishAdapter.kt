@@ -12,6 +12,8 @@ import android.widget.TextView
 import me.swosh.android.R
 import me.swosh.android.models.Swosh
 import net.glxn.qrgen.android.QRCode
+import java.text.SimpleDateFormat
+import java.util.*
 
 class SwishAdapter(context: Context, swoshList: List<Swosh>)
     : RecyclerView.Adapter<SwishAdapter.SwishViewHolder>() {
@@ -24,9 +26,6 @@ class SwishAdapter(context: Context, swoshList: List<Swosh>)
         val layoutView = LayoutInflater.from(parent.context)
                 .inflate(R.layout.swish_card, null)
         val viewHolder = SwishViewHolder(layoutView)
-
-        Log.d("SwishAdapter", "context is AdapterListener: " + (context is AdapterListener))
-        Log.d("SwishAdapter", "context is : " + (context))
 
         if(context is AdapterListener)
             adapterListener = context
@@ -41,7 +40,10 @@ class SwishAdapter(context: Context, swoshList: List<Swosh>)
         holder.itemView.setOnLongClickListener{ adapterListener.onCardLongClick(swosh) }
 
         holder.messageText.text = swosh.message
-        holder.expirationText.text = swosh.expiration.toString()
+
+        val formatter = SimpleDateFormat("dd/MM/yyyy")
+        holder.expirationText.text = "Expires " + formatter.format(Date(swosh.expiration))
+
         holder.amountText.text = swosh.amount.toString()
         holder.qrImage.setImageBitmap(QRCode.from(swosh.url)
                 .withSize(100,100)

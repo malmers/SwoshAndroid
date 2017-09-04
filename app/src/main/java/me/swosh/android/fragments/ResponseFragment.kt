@@ -15,6 +15,8 @@ import me.swosh.android.models.Swosh
 import kotlinx.android.synthetic.main.fragment_response.*
 import net.glxn.qrgen.android.QRCode
 import net.glxn.qrgen.core.image.ImageType
+import java.text.SimpleDateFormat
+import java.util.*
 
 class ResponseFragment : Fragment() {
 
@@ -50,7 +52,8 @@ class ResponseFragment : Fragment() {
         response_amount.text = "${response.amount}"
         response_message.text = response.message
         response_phone.text = response.phone
-        response_expiration.text = response.expiration.toString()
+        val formatter = SimpleDateFormat("dd/MM/yyyy")
+        response_expiration.text = "Expires " + formatter.format(Date(response.expiration))
         response_done_button.setOnClickListener {
 
             // if user is coming from createFragment, pop an addition fragment

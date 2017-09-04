@@ -3,14 +3,12 @@ package me.swosh.android.fragments
 import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.EditText
-import com.fasterxml.jackson.databind.ObjectMapper
-import com.fasterxml.jackson.databind.node.ObjectNode
-import com.fasterxml.jackson.module.kotlin.registerKotlinModule
 import kotlinx.android.synthetic.main.fragment_create.*
 import me.swosh.android.R
 import me.swosh.android.activities.MainActivity
@@ -19,7 +17,6 @@ import me.swosh.android.data.Preference
 import me.swosh.android.domain.SwoshHTTP
 import me.swosh.android.models.Swosh
 import me.swosh.android.models.SwoshRequest
-import me.swosh.android.models.SwoshResponse
 
 class CreateFragment : Fragment() {
 
