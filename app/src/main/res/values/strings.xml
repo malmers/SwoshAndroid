@@ -4,7 +4,7 @@
     <string name="phone">Phone number</string>
     <string name="amount">Amount</string>
     <string name="message">Message</string>
-    <string name="expiration">Expires in</string>
+    <string name="expiration">Expires</string>
     <string name="create_button">Generate link</string>
 
     <string-array name="amount_name">

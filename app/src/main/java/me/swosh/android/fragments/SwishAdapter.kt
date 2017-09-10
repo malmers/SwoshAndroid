@@ -41,7 +41,7 @@ class SwishAdapter(context: Context, swoshList: List<Swosh>)
 
         holder.messageText.text = swosh.message
 
-        val formatter = SimpleDateFormat("dd/MM/yyyy")
+        val formatter = SimpleDateFormat("yyyy-MM-dd 'at' HH:mm")
         holder.expirationText.text = "Expires " + formatter.format(Date(swosh.expiration))
 
         holder.amountText.text = swosh.amount.toString()

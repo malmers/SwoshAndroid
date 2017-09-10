@@ -52,8 +52,10 @@ class ResponseFragment : Fragment() {
         response_amount.text = "${response.amount}"
         response_message.text = response.message
         response_phone.text = response.phone
-        val formatter = SimpleDateFormat("dd/MM/yyyy")
-        response_expiration.text = "Expires " + formatter.format(Date(response.expiration))
+
+        val formatter = SimpleDateFormat("yyyy-MM-dd 'at' HH:mm")
+
+        response_expiration.text = formatter.format(Date(response.expiration))
         response_done_button.setOnClickListener {
 
             // if user is coming from createFragment, pop an addition fragment

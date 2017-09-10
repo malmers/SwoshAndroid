@@ -6,7 +6,8 @@ class Swosh(val amount: Int, val expiration: Long, val id: String, val message: 
 
     constructor(request: SwoshRequest, response: SwoshResponse):
             this(request.amount,
-                    System.currentTimeMillis()/1000 + request.expireAfterSeconds,
+                    System.currentTimeMillis()
+                            + request.expireAfterSeconds*1000,
                     response.id,
                     request.message,
                     request.phone,
@@ -14,6 +15,6 @@ class Swosh(val amount: Int, val expiration: Long, val id: String, val message: 
 
     @JsonIgnore
     fun isExpired(): Boolean {
-        return expiration < System.currentTimeMillis()/1000
+        return expiration < System.currentTimeMillis()
     }
 }
