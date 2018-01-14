@@ -46,9 +46,9 @@ class ResponseFragment : Fragment() {
 
         response_qr.setImageBitmap(QRCode.from(response.url)
                 .withSize(100,100)
-                .withColor(Color.WHITE, Color.TRANSPARENT)
+                .withColor(Color.DKGRAY, Color.TRANSPARENT)
                 .bitmap())
-        response_id.text = "#${response.id}"
+        //response_id.text = "#${response.id}"
         response_amount.text = "${response.amount}"
         response_message.text = response.message
         response_phone.text = response.phone

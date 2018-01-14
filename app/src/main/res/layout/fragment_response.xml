@@ -36,22 +36,22 @@
 
             <ImageView
                 android:id="@+id/response_qr"
+                android:background="@drawable/white_rect"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"/>
 
-            <TextView
+            <!--<TextView
                 android:id="@+id/response_id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="24sp"
-                android:text="@string/response_id"
                 android:textStyle="bold"
                 android:alpha="175"
                 android:layout_centerHorizontal="true"
                 android:layout_below="@+id/response_qr"
-                android:textColor="@color/colorAccent" />
+                android:textColor="@color/colorAccent" />-->
         </RelativeLayout>
 
     </FrameLayout>
