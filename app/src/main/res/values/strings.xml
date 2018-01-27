@@ -43,4 +43,5 @@
     <string name="menu_delete">Delete</string>
     <string name="done">Done</string>
     <string name="share">Share via</string>
+    <string name="amount_error">Add the amount of money the request is for</string>
 </resources>

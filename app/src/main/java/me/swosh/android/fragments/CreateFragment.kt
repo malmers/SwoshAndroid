@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.EditText
+import android.widget.Toast
 import kotlinx.android.synthetic.main.fragment_create.*
 import me.swosh.android.R
 import me.swosh.android.activities.MainActivity
@@ -45,14 +46,32 @@ class CreateFragment : Fragment() {
         }
 
         create_button.setOnClickListener {
-            val request = SwoshRequest(phone_text.text.toString(), intFromTextField(amount), message.text.toString(), Integer.parseInt(expiration))
-            val transport = SwoshHTTP()
-            transport.sendRequest(request) { response ->
-                response?.let {
-                    preference.phone = request.phone
-                    listener.doneClick(Swosh(request, response))
+
+            if(amount.text == null
+                    || amount.text.toString().equals("")
+                    || intFromTextField(amount) <= 0) {
+
+                Toast.makeText(context, getString(R.string.amount_error), Toast.LENGTH_LONG).show()
+
+            } else {
+
+                val request = SwoshRequest(phone_text.text.toString(), intFromTextField(amount), message.text.toString(), Integer.parseInt(expiration))
+                val transport = SwoshHTTP()
+                transport.sendRequest(request) { response ->
+
+                    if(amount == null) {
+                        Toast.makeText(context, getString(R.string.amount_error), Toast.LENGTH_LONG)
+                    } else {
+
+                    }
+                    response?.let {
+                        preference.phone = request.phone
+                        listener.doneClick(Swosh(request, response))
+                    }
                 }
+
             }
+
         }
     }
 
