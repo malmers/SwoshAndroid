@@ -31,7 +31,7 @@
                 android:layout_marginTop="@dimen/margin_huge"
                 android:layout_marginEnd="@dimen/margin_standard"
                 android:textColor="#EEE"
-                android:text="Done"
+                android:text="@string/done"
                 android:textStyle="bold"/>
 
             <ImageView

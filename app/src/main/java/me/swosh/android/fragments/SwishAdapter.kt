@@ -44,7 +44,7 @@ class SwishAdapter(context: Context, swoshList: List<Swosh>)
         val formatter = SimpleDateFormat("yyyy-MM-dd 'at' HH:mm")
         holder.expirationText.text = "Expires " + formatter.format(Date(swosh.expiration))
 
-        holder.amountText.text = swosh.amount.toString()
+        holder.amountText.text = swosh.amount.toString() + " kr"
         holder.qrImage.setImageBitmap(QRCode.from(swosh.url)
                 .withSize(100,100)
                 .withColor(context.resources.getColor(R.color.textColor), Color.TRANSPARENT)

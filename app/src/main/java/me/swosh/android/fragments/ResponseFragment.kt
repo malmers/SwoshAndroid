@@ -49,7 +49,7 @@ class ResponseFragment : Fragment() {
                 .withColor(Color.DKGRAY, Color.TRANSPARENT)
                 .bitmap())
         //response_id.text = "#${response.id}"
-        response_amount.text = "${response.amount}"
+        response_amount.text = "${response.amount}" + " kr"
         response_message.text = response.message
         response_phone.text = response.phone
 

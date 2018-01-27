@@ -9,8 +9,9 @@
 
         <ImageView
             android:id="@+id/menu_qr"
-            android:layout_width="75dp"
-            android:layout_height="75dp"
+            android:background="@drawable/white_rect"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:layout_centerHorizontal="true"/>
 
         <TextView
@@ -24,7 +25,7 @@
             android:alpha="175"
             android:layout_centerHorizontal="true"
             android:layout_below="@+id/menu_qr"
-            android:textColor="@color/colorAccent" />
+            android:textColor="@color/purple_text" />
 
         <TextView
             android:id="@+id/menu_amount"
@@ -32,7 +33,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:text="300 sek"
-            android:textColor="@color/colorAccent"
+            android:textColor="@color/purple_text"
             android:layout_below="@+id/menu_message"
             android:textSize="14sp"
             android:textStyle="bold"

@@ -2,10 +2,10 @@
 <resources>
     <string name="app_name">Swosh</string>
     <string name="action_settings">Inställningar</string>
-    <string name="phone">Nummer</string>
-    <string name="amount">Belopp</string>
+    <string name="phone">Mottagare</string>
+    <string name="amount">Belopp (SEK)</string>
     <string name="message">Meddelande</string>
-    <string name="expiration">Giltighetstid</string>
+    <string name="expiration">Går ut</string>
     <string name="create_button">Skapa</string>
 
     <string-array name="amount_name">
@@ -15,7 +15,6 @@
         <item>1 timma</item>
         <item>30 minuter</item>
         <item>10 minuter</item>
-        <item>Aldrig</item>
     </string-array>
 
     <string name="response_title">Länk</string>
@@ -25,4 +24,8 @@
     <string name="home_placeholder1">Du har inte skapat några Swosh-länkar än :(</string>
     <string name="home_placeholder2">Tryck på knappen nedan för att skapa en ny swishförfrågan som du kan skicka till dina vänner</string>
     <string name="home_button">Ny betallänk</string>
+    <string name="menu_share">Dela</string>
+    <string name="menu_edit">Redigera</string>
+    <string name="menu_delete">Ta bort</string>
+    <string name="done">Klart</string>
 </resources>

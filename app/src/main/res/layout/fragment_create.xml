@@ -36,7 +36,7 @@
                 android:inputType="phone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Phone number"/>
+                android:hint="@string/phone"/>
 
         </android.support.design.widget.TextInputLayout>
 
@@ -65,7 +65,7 @@
                 android:inputType="numberDecimal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Amount of monies"/>
+                android:hint="@string/amount"/>
 
         </android.support.design.widget.TextInputLayout>
 
@@ -107,7 +107,7 @@
                 android:inputType="textMultiLine"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Message"/>
+                android:hint="@string/message"/>
 
         </android.support.design.widget.TextInputLayout>
 

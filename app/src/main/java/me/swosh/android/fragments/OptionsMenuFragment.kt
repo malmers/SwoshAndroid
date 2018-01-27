@@ -35,9 +35,9 @@ class OptionsMenuFragment : BottomSheetDialogFragment() {
 
         menu_qr.setImageBitmap(QRCode.from(swosh.url)
                 .withSize(100,100)
-                .withColor(Color.WHITE, Color.TRANSPARENT)
+                .withColor(Color.DKGRAY, Color.TRANSPARENT)
                 .bitmap())
-        menu_amount.text = swosh.amount.toString()
+        menu_amount.text = swosh.amount.toString() + " kr"
         menu_message.text = swosh.message
         menu_edit_button.setOnClickListener { editButtonListener.onClick(view) }
     }
