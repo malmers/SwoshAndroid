@@ -42,4 +42,5 @@
     <string name="menu_edit">Edit</string>
     <string name="menu_delete">Delete</string>
     <string name="done">Done</string>
+    <string name="share">Share via</string>
 </resources>

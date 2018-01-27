@@ -49,7 +49,7 @@ class ResponseFragment : Fragment() {
                 .withColor(Color.DKGRAY, Color.TRANSPARENT)
                 .bitmap())
         //response_id.text = "#${response.id}"
-        response_amount.text = "${response.amount}" + " kr"
+        response_amount.text = "${response.amount}"
         response_message.text = response.message
         response_phone.text = response.phone
 
@@ -69,7 +69,7 @@ class ResponseFragment : Fragment() {
             val sharingIntent = Intent(android.content.Intent.ACTION_SEND)
             sharingIntent.type = "text/plain"
             sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, response.url)
-            startActivity(Intent.createChooser(sharingIntent, "Share via"))
+            startActivity(Intent.createChooser(sharingIntent, getString(R.string.share)))
         }
     }
 }

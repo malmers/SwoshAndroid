@@ -18,6 +18,20 @@ class HistoryStorage(directory: File) {
         file.appendText(mapper.writeValueAsString(swosh) + "\n")
     }
 
+    // Removes the swosh and rewrites local file with saved swoshes on device
+    fun removeSwosh(swosh: Swosh) {
+        swoshList.remove(swosh)
+
+        file.delete()
+        file.createNewFile()
+
+        val mapper = ObjectMapper().registerKotlinModule()
+
+        swoshList.forEach {
+            file.appendText(mapper.writeValueAsString(it) + "\n")
+        }
+    }
+
     fun getSwoshList(): List<Swosh> {
         return swoshList
     }

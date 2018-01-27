@@ -28,4 +28,5 @@
     <string name="menu_edit">Redigera</string>
     <string name="menu_delete">Ta bort</string>
     <string name="done">Klart</string>
+    <string name="share">Dela via</string>
 </resources>

@@ -1,6 +1,7 @@
 package me.swosh.android.fragments
 
 import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.support.design.widget.BottomSheetDialogFragment
@@ -19,6 +20,7 @@ class OptionsMenuFragment : BottomSheetDialogFragment() {
 
     private lateinit var swosh: Swosh
     private lateinit var editButtonListener: View.OnClickListener
+    private lateinit var deleteButtonListener: View.OnClickListener
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val view = inflater.inflate(R.layout.long_click_menu, container, false)
@@ -39,7 +41,22 @@ class OptionsMenuFragment : BottomSheetDialogFragment() {
                 .bitmap())
         menu_amount.text = swosh.amount.toString() + " kr"
         menu_message.text = swosh.message
-        menu_edit_button.setOnClickListener { editButtonListener.onClick(view) }
+        menu_edit_button.setOnClickListener {
+            editButtonListener.onClick(view)
+            this.dismiss()
+        }
+        menu_share_button.setOnClickListener {
+            val sharingIntent = Intent(Intent.ACTION_SEND)
+            sharingIntent.type = "text/plain"
+            sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, swosh.url)
+            startActivity(Intent.createChooser(sharingIntent, getString(R.string.share)))
+            this.dismiss()
+        }
+        menu_delete_button.setOnClickListener {
+            deleteButtonListener.onClick(view)
+            this.dismiss()
+
+        }
     }
 
     fun setSwosh(swosh: Swosh) {
@@ -48,5 +65,9 @@ class OptionsMenuFragment : BottomSheetDialogFragment() {
 
     fun setEditButtonListener(editButtonListener: View.OnClickListener) {
         this.editButtonListener = editButtonListener
+    }
+
+    fun setDeleteButtonListener(deleteButtonListener: View.OnClickListener) {
+        this.deleteButtonListener = deleteButtonListener
     }
 }

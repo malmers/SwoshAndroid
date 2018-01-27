@@ -55,12 +55,27 @@ class HomeFragment : Fragment() {
         swishAdapter = SwishAdapter(context, swoshList)
 
         //swishAdapter.setAdapterListener(context as MainActivity)
-        swish_recycle_list.adapter = swishAdapter;
+        swish_recycle_list.adapter = swishAdapter
 
     }
 
     fun setHistory(history: HistoryStorage) {
         this.history = history
+    }
+
+    fun refreshSwoshList () {
+
+        if(info_box != null && history.getSwoshList().isEmpty()) {
+            info_box.visibility = View.VISIBLE
+        } else {
+            info_box.visibility = View.GONE
+        }
+
+        if(swishAdapter != null) {
+            swishAdapter = SwishAdapter(context, history.getSwoshList())
+            swish_recycle_list.adapter = swishAdapter
+            swishAdapter.notifyDataSetChanged()
+        }
     }
 
     interface HomeFragmentListener {

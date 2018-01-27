@@ -5,6 +5,7 @@ import android.content.Context
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
+import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import me.swosh.android.R
@@ -99,12 +100,20 @@ class MainActivity : AppCompatActivity(),
                 .commit()
     }
 
+    // menu appearing from bottom when user long click a card
     override fun onCardLongClick(swosh: Swosh): Boolean {
 
         var optionsMenuFragment: OptionsMenuFragment = OptionsMenuFragment()
         optionsMenuFragment.setSwosh(swosh)
         optionsMenuFragment.setEditButtonListener(View.OnClickListener {
             onCardClick(swosh)
+        })
+        optionsMenuFragment.setDeleteButtonListener(View.OnClickListener {
+            // removes the swosh
+            history.removeSwosh(swosh)
+            homeFragment.setHistory(history)
+            homeFragment.refreshSwoshList()
+
         })
         optionsMenuFragment.show(supportFragmentManager.beginTransaction(),
                 "dialog")
