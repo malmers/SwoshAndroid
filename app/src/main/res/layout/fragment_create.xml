@@ -82,13 +82,24 @@
             app:srcCompat="@drawable/ic_access_time_24px"
             android:layout_centerVertical="true"/>
 
+        <TextView
+            android:id="@+id/expiration_text"
+            android:text="@string/expires_in"
+            android:textSize="14dp"
+            android:textColor="#fff"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="12dp"
+            android:layout_toEndOf="@id/duration_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
         <Spinner
             android:id="@+id/expiration_spinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginStart="@dimen/margin_small"
-            android:layout_toEndOf="@id/duration_icon"
+            android:layout_marginStart="-8dp"
+            android:layout_toEndOf="@id/expiration_text"
             android:entries="@array/amount_name" />
 
     </RelativeLayout>

@@ -30,4 +30,5 @@
     <string name="done">Klart</string>
     <string name="share">Dela via</string>
     <string name="amount_error">Lägg till hur mycket pengar swishförfrågan gäller</string>
+    <string name="expires_in">Slutar fungera om </string>
 </resources>
