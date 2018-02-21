@@ -8,6 +8,24 @@
     <string name="expiration">Går ut</string>
     <string name="create_button">Skapa</string>
 
+
+    <string name="response_amount_label">Belopp (SEK)</string>
+    <string name="response_message_label">Meddelande</string>
+
+    <string name="TAG_CREATE_FRAGMENT">CREATE_FRAGMENT</string>
+    <string name="TAG_RESPONSE_FRAGMENT">RESPONSE_FRAGMENT</string>
+    <string name="TAG_HOME_FRAGMENT">HOME_FRAGMENT</string>
+    <string name="ACTIONBAR_TITLE_NEW_LINK">Lägg till</string>
+    <string name="ACTIONBAR_TITLE_YOUR_SWISH_LINKS">Aktiva Swishlänkar</string>
+    <string name="ACTIONBAR_TITLE_SWOSH_LINK">Swishlänkar</string>
+    <string name="SHARED_PREFS_SWOSHES">SHARED_PREFS_SWOSHES</string>
+    <string name="JSON_TAG_PHONE">JSON_PHONE</string>
+    <string name="JSON_TAG_AMOUNT">JSON_AMOUNT</string>
+    <string name="JSON_TAG_MESSAGE">JSON_MESSAGE</string>
+    <string name="JSON_TAG_EXPIRATION">JSON_EXPIRATION</string>
+    <string name="JSON_TAG_ID">JSON_ID</string>
+    <string name="JSON_TAG_URL">JSON_URL</string>
+
     <string-array name="amount_name">
         <item>1 vecka</item>
         <item>1 dag</item>
@@ -15,6 +33,16 @@
         <item>1 timma</item>
         <item>30 minuter</item>
         <item>10 minuter</item>
+    </string-array>
+
+    <string-array name="amount_value">
+        <item>604800</item>
+        <item>86400</item>
+        <item>43200</item>
+        <item>3600</item>
+        <item>1800</item>
+        <item>600</item>
+        <item>0</item>
     </string-array>
 
     <string name="response_title">Länk</string>
