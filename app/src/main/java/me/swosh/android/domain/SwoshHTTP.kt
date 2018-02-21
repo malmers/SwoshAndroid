@@ -1,6 +1,5 @@
 package me.swosh.android.domain
 
-import android.util.Log
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.Response
@@ -27,12 +26,10 @@ class SwoshHTTP() : SwoshTransport {
 
         val request = JsonObjectRequest(Request.Method.POST, url, JSONObject(values),
                 Response.Listener<JSONObject> {
-                    response -> Log.d("swosh", "Data found")
-                    completionHandler(mapper.readValue(response.toString(), SwoshResponse::class.java))
+                    response -> completionHandler(mapper.readValue(response.toString(), SwoshResponse::class.java))
                 },
                 Response.ErrorListener {
-                    response -> Log.d("swosh", "No data")
-                    completionHandler(null)
+                    response -> completionHandler(null)
                 })
         request.setShouldCache(false)
         queue.add(request)
